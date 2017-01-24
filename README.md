@@ -1,2 +1,2 @@
 # STLInspector
-Tool for STL specification validation
+Coming soon: A tool for validating Signal Temporal Logic specifications.
