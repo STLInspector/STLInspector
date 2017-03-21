@@ -11,8 +11,11 @@ Additionally, the GUI depends on [Bootstrap](http://getbootstrap.com/), [jQuery]
 The dependencies can be installed as follows:
 
 Install the Python 2 >= 2.7.9 using your package manager or download it from
-http://www.python.org/downloads. This also provides the Python package manager pip. Clone the [STLInspector](http://github.com/STLInspector/STLInspector) repository, change into its root directory and install all Python packages listed in [requirements.txt](https://github.com/STLInspector/STLInspector/blob/master/LICENSE) using pip:
+http://www.python.org/downloads. This also provides the Python package manager pip. Clone the [STLInspector](http://github.com/STLInspector/STLInspector) repository,
+change into its root directory and install all Python packages listed in [requirements.txt](https://github.com/STLInspector/STLInspector/blob/master/LICENSE) using pip:
 ```bash
+git clone http://github.com/STLInspector/STLInspector STLInspector
+cd STLInspector
 sudo pip install -r requirements.txt
 ```
 Now [ANTLR v4](http://github.com/antlr/antlr4), [Flask](http://flask.pocoo.org/) and [Flask-Assets](https://flask-assets.readthedocs.io/en/latest/) should be installed. For installation of Z3 follow the directions under https://github.com/Z3Prover/z3. Do not forget to use the ``--python`` command line flag with ``mk_make.py`` to enable building the Python bindings.
@@ -46,7 +49,7 @@ example the STL candidate is wrong, some of your evaluation results should
 differ from the STL candidate results.
 9. Change the STL candidate to:
 
-    > F[1,3] velocity > 5                                                       
+    > G[1,3] velocity > 5                                                       
 
 10. Redo the visual inspection on the new STL candidate.
 11. You should not get conflicting evaluation results for the STL candidate now.
