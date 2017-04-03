@@ -116,3 +116,17 @@ class FINALLY(Clause):
     @remove_duplicates
     def sto(self, onezero):
         return [FINALLY(y, self.lower_bound, self.upper_bound) for y in self.operand1.sto(onezero)]
+
+    def ufc_plus(self):
+        from until import UNTIL
+        from _not import NOT
+        return [UNTIL(NOT(self.operand1), y, self.lower_bound, self.upper_bound) for y in self.operand1.ufc_plus()]
+
+    def ufc_minus(self):
+        from until import UNTIL
+        from _not import NOT
+        from _and import AND
+        from globally import GLOBALLY
+        return [UNTIL(NOT(self.operand1),
+                      AND(y, GLOBALLY(NOT(self.operand1), self.lower_bound, self.upper_bound)), 
+                      self.lower_bound, self.upper_bound) for y in self.operand1.ufc_minus()]

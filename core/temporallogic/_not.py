@@ -141,3 +141,9 @@ class NOT(Clause):
     @remove_duplicates
     def sto(self, onezero):
         return [NOT(y) for y in self.operand1.sto(onezero)]
+
+    def ufc_plus(self):
+        return [y for y in self.operand1.ufc_minus()]
+
+    def ufc_minus(self):
+        return [y for y in self.operand1.ufc_plus()]

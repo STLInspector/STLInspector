@@ -221,6 +221,13 @@ class AP(Clause):
     def sto(self, onezero):
         return [ap_true] if (onezero == 1) else [ap_false]
 
+    def ufc_plus(self):
+        return [self]
+
+    def ufc_minus(self):
+        from _not import NOT
+        return [NOT(self)]
+
 
 # True and False are defined during the whole program
 ap_true = AP("True")

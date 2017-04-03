@@ -153,3 +153,15 @@ class OR(Clause):
     def sto(self, onezero):
         return [OR(y, self.operand2) for y in self.operand1.sto(onezero) if not y == self.operand2] \
                + [OR(self.operand1, y) for y in self.operand2.sto(onezero) if not y == self.operand1]
+
+    def ufc_plus(self):
+        from _and import AND
+        from _not import NOT
+        return [AND(y, NOT(self.operand2)) for y in self.operand1.ufc_plus()] \
+               + [AND(NOT(self.operand1), y) for y in self.operand2.ufc_plus()]
+
+    def ufc_minus(self):
+        from _and import AND
+        from _not import NOT
+        return [AND(y, NOT(self.operand2)) for y in self.operand1.ufc_minus()] \
+               + [AND(NOT(self.operand1), y) for y in self.operand2.ufc_minus()]

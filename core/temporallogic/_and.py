@@ -149,3 +149,11 @@ class AND(Clause):
     def sto(self, onezero):
         return [AND(y, self.operand2) for y in self.operand1.sto(onezero) if not y == self.operand2] \
                + [AND(self.operand1, y) for y in self.operand2.sto(onezero) if not y == self.operand1]
+
+    def ufc_plus(self):
+        return [AND(y, self.operand2) for y in self.operand1.ufc_plus()] \
+               + [AND(self.operand1, y) for y in self.operand2.ufc_plus()]
+
+    def ufc_minus(self):
+        return [AND(y, self.operand2) for y in self.operand1.ufc_minus()] \
+                + [AND(self.operand1, y) for y in self.operand2.ufc_minus()]

@@ -422,3 +422,40 @@ class Clause:
             DC, USA. IEEE Computer Society Press, Los Alamitos (2000).
         """
         pass
+
+    @remove_duplicates
+    def ufc(self, plusminus):
+        """ Generates test predicates to distinguish Unique First Causes [0].
+
+        Given a formula and a signal (or trace) for it, we define a clause as the Unique
+        First Cause (UFC) if in the first state along the signal (or trace) where the
+        formula is (dis-)satisfied, it is (dis-)satisfied because of the specific clause.
+
+        Args:
+            self (Clause) : The formula for which UFC test predicates are generated.
+            plusminus : Operator object that is either "operator.add" if satisfying UFC's
+                        are supposed to be tested for or it is "operator.minus" if
+                        dissatisfying UFC's are supposed to be tested for.
+
+        References:
+            [0] https://github.com/ec-m/BachelorsThesis/blob/master/thesis.pdf
+        """
+        return self.ufc_plus() if (plusminus == add) else self.ufc_minus()
+
+    def ufc_plus(self):
+        """ Generates test predicates to distinguish Unique First Causes that
+        satisfy the formula under test.
+
+        Args:
+              self (Clause) : The formula for which the test predicates are generated.
+        """
+        pass
+
+    def ufc_minus(self):
+        """ Generates test predicates to distinguish Unique First Causes that
+        dissatisfy the formula under test.
+
+        Args:
+              self (Clause) : The formula for which the test predicates are generated.
+        """
+        pass

@@ -179,3 +179,13 @@ class RELEASE(Clause):
                 for y in self.operand1.sto(onezero) if not y == self.operand2] \
                + [RELEASE(self.operand1, y, self.lower_bound, self.upper_bound)
                   for y in self.operand2.sto(onezero) if not y == self.operand1]
+
+    def ufc_plus(self):
+        from _not import NOT
+        from until import UNTIL
+        return NOT(UNTIL(NOT(self.operand1), NOT(self.operand2), self.lower_bound, self.upper_bound)).ufc_plus()
+
+    def ufc_minus(self):
+        from _not import NOT
+        from until import UNTIL
+        return NOT(UNTIL(NOT(self.operand1), NOT(self.operand2), self.lower_bound, self.upper_bound)).ufc_minus()

@@ -154,3 +154,13 @@ class IMPLIES(Clause):
     def sto(self, onezero):
         return [IMPLIES(y, self.operand2) for y in self.operand1.sto(onezero) if not y == self.operand2] \
                + [IMPLIES(self.operand1, y) for y in self.operand2.sto(onezero) if not y == self.operand1]
+
+    def ufc_plus(self):
+        from _or import OR
+        from _not import NOT
+        return OR(NOT(self.operand1), self.operand2).ufc_plus()
+
+    def ufc_minus(self):
+        from _or import OR
+        from _not import NOT
+        return OR(NOT(self.operand1), self.operand2).ufc_minus()

@@ -109,3 +109,10 @@ class NEXT(Clause):
     @remove_duplicates
     def sto(self, onezero):
         return [NEXT(y, self.lower_bound) for y in self.operand1.sto(onezero)]
+
+    def ufc_plus(self):
+        return [NEXT(y, self.lower_bound) for y in self.operand1.ufc_plus()]
+
+    def ufc_minus(self):
+        return [NEXT(y, self.lower_bound) for y in self.operand1.ufc_minus()]
+

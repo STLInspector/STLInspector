@@ -209,3 +209,25 @@ class UNTIL(Clause):
                 for y in self.operand1.sto(onezero) if not y == self.operand2] \
                + [UNTIL(self.operand1, y, self.lower_bound, self.upper_bound)
                   for y in self.operand2.sto(onezero) if not y == self.operand1]
+
+    def ufc_plus(self):
+        from until import UNTIL
+        from _and import AND
+        from _not import NOT
+        return [UNTIL(AND(self.operand1, NOT(self.operand2)), 
+                      AND(AND(y, NOT(self.operand2)),
+                          UNTIL(self.operand1, self.operand2, self.lower_bound, self.upper_bound)),
+                      self.lower_bound, self.upper_bound) for y in self.operand1.ufc_plus()] \
+               + [UNTIL(AND(self.operand1, NOT(self.operand2)), y, self.lower_bound, self.upper_bound) 
+                  for y in self.operand2.ufc_plus()]
+
+    def ufc_minus(self):
+        from until import UNTIL
+        from _and import AND
+        from _not import NOT
+        return [UNTIL(AND(self.operand1, NOT(self.operand2)), 
+                      AND(y, NOT(self.operand2)), self.lower_bound, self.upper_bound)
+                for y in self.operand1.ufc_minus()] \
+               + [UNTIL(AND(self.operand1, NOT(self.operand2)), 
+                        AND(y, NOT(UNTIL(self.operand1, self.operand2, self.lower_bound, self.upper_bound))), 
+                        self.lower_bound, self.upper_bound) for y in self.operand2.ufc_minus()]

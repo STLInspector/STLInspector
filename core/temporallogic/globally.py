@@ -117,3 +117,15 @@ class GLOBALLY(Clause):
     @remove_duplicates
     def sto(self, onezero):
         return [GLOBALLY(y, self.lower_bound, self.upper_bound) for y in self.operand1.sto(onezero)]
+
+    def ufc_plus(self):
+        from until import UNTIL
+        from _and import AND
+        return [UNTIL(self.operand1, 
+                      AND(y, GLOBALLY(self.operand1, self.lower_bound, self.upper_bound)), 
+                      self.lower_bound, self.upper_bound) for y in self.operand1.ufc_plus()]
+
+    def ufc_minus(self):
+        from until import UNTIL
+        return [UNTIL(self.operand1, y, self.lower_bound, self.upper_bound) for y in self.operand1.ufc_minus()]
+
