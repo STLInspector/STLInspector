@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	<title>STLInspector</title>
+	<link rel="shortcut icon" type="image/png" href="{{ url_for('static', filename='img/STLInspector.png') }}" sizes="32x32">
+
+	<!-- css -->
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	 crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+	 crossorigin="anonymous">
+	<!-- jQuery ui -->
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<!-- STLInspector -->
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/STLInspector.css') }}">
+
+	<!-- scripts -->
+	<!-- jQuery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<!-- jQuery ui -->
+	<script src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+	<!-- Bootstrap -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+	 crossorigin="anonymous"></script>
+	<!-- chart.js -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+	<!-- handlebars.js -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.min.js"></script>
+	<!-- STLInspector -->
+	{% assets "STLInspector_js" %}
+	<script type="text/javascript" src="{{ ASSET_URL }}"></script>
+	{% endassets %}
+
+</head>
+
+<body>
+	<noscript>
+		<h1>STLInspector requires Javascript and cannot be used without it.</h1>
+	</noscript>
+	<nav class="navbar navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<span class="navbar-brand" style="background-image: url({{ url_for('static', filename='img/STLInspector.svg') }});">STLInspector</span>
+			</div>
+			<div class="navbar-collapse">
+				<p class="navbar-text navbar-right"><a href="documentation" target="_blank">documentation</a></p>
+			</div>
+		</div>
+	</nav>
+	<div id="message-list" class="container">
+		{% raw %}
+		<script id="message-list-entry" type="text/x-handlebars-template">
+			<div class="alert alert-{{type}} alert-dismissable">
+				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> {{message}}
+			</div>
+		</script>
+		{% endraw %}
+	</div>
+	<div class="container">
+		<div id="tabs">
+			<ul>
+				<li><a href="#overview-page">requirements list</a></li>
+				{% raw %}
+				<script id="tab-nav-entry" type="text/x-handlebars-template">
+					<li>
+						<span class="pull-left glyphicon"></span>
+						<a href="#project-{{id}}">{{title}}</a>
+						<span class="ui-icon ui-icon-close" role="presentation">Remove Tab</span>
+					</li>
+				</script>
+				{% endraw %}
+			</ul>
+			<div id="overview-page">
+				<h5>
+					<button class="btn-action-refresh btn btn-default pull-right" type "button">Refresh</button>
+					<button class="btn-action-new btn btn-default pull-right" type "button">New Requirements Project</button> Requirements
+					list
+				</h5>
+				<ul class="list-group req-list">
+					{% raw %}
+					<script id="req-list-loading" type="text/x-handlebars-template">
+						<li class="list-group-item">
+							<div class="message alert alert-info" role="alert">
+								<span class="glyphicon glyphicon-refresh gly-spin"></span> Loading...
+							</div>
+						</li>
+					</script>
+					{% endraw %}
+					{% raw %}
+					<script id="req-list-error" type="text/x-handlebars-template">
+						<li class="list-group-item">
+							<div class="message alert alert-danger" role="alert">
+								<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> An error has occurred while loading
+								the list.
+							</div>
+						</li>
+					</script>
+					{% endraw %}
+					{% raw %}
+					<script id="req-list-empty" type="text/x-handlebars-template">
+						<li class="list-group-item">
+							<div class="message alert alert-info" role="alert">
+								<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> Project list is empty.
+							</div>
+						</li>
+					</script>
+					{% endraw %}
+					{% raw %}
+					<script id="req-list-entry" type="text/x-handlebars-template">
+						<li id="{{id}}" class="list-group-item">
+							{{title}}
+							<div class="btn-group pull-right">
+								<button class="btn btn-default btn-action-open" type "button">Open</button>
+								<button class="btn btn-default btn-action-delete" type "button">Delete</button>
+							</div>
+							<span class="label {{coverageClass}} pull-right">{{coverageText}}</span>
+						</li>
+					</script>
+					{% endraw %}
+				</ul>
+				<div id="project-new-dialog" title="New Requirements Project">
+					<form>
+						<fieldset class="ui-helper-reset">
+							<label for="title">Title</label>
+							<input type="text" name="title" id="project-new-title" value="Title" class="ui-widget-content ui-corner-all">
+						</fieldset>
+					</form>
+				</div>
+				<div id="project-delete-dialog" title="Delete">
+					<p>
+						<span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span> The project will be permanently
+						deleted and cannot be recovered. Are you sure?
+					</p>
+				</div>
+				<div id="project-savebeforeclose-dialog" title="Unsaved data">
+					<p>
+						<span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span> The project contains unsaved
+						data.
+					</p>
+				</div>
+			</div>
+			{% raw %}
+			<script id="project-page-template" type="text/x-handlebars-template">
+				<div id="project-{{id}}" class="project-page">
+					<div class="project-overview">
+						<h4>
+							<button class="btn-action-save btn btn-default pull-right" type "button">Save</button> {{title}}: Project Overview
+						</h4>
+						<div class="project-dialog-stlcandidate" title="Change STL candidate">
+							<form>
+								<fieldset class="ui-helper-reset">
+									<label for="title">New STL candidate</label>
+									<textarea name="stlcandidate" cols="40" rows="5" class="ui-widget-content ui-corner-all project-form-stlcandidate"></textarea>
+								</fieldset>
+							</form>
+							<div>Warning: All tests and evaluation results will be lost.</div>
+						</div>
+						<div class="project-dialog-textrequirement" title="Change text requirement">
+							<form>
+								<fieldset class="ui-helper-reset">
+									<label for="title">New text requirement</label>
+									<textarea name="textrequirement" cols="40" rows="5" class="ui-widget-content ui-corner-all project-form-textrequirement"></textarea>
+								</fieldset>
+							</form>
+						</div>
+						<div class="project-dialog-textnotes" title="Change text notes">
+							<form>
+								<fieldset class="ui-helper-reset">
+									<label for="title">New text notes</label>
+									<textarea name="textnotes" cols="40" rows="5" class="ui-widget-content ui-corner-all project-form-textnotes"></textarea>
+								</fieldset>
+							</form>
+						</div>
+						<div class="panel panel-default">
+							<div class="panel-heading">Textual requirement <button class="btn btn-default pull-right btn-action-change-textrequirement" type "button">Edit</button></div>
+							<div class="panel-body textRequirement"></div>
+						</div>
+						<div class="panel panel-default">
+							<div class="panel-heading">current STL candidate <button class="btn btn-default pull-right btn-action-change-stlcandidate" type "button">Edit</button></div>
+							<div class="panel-body stlCandidate"></div>
+						</div>
+						<div class="panel panel-default mutation-coverage">
+							<div class="panel-heading">
+								<div class="pull-left">
+									Current mutation coverage
+								</div>
+								<div class="progress">
+									<div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="2" aria-valuemin="0" aria-valuemax="100" style="min-width: 4em; width: 100%;">
+										Loading...
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="panel panel-default">
+							<div class="panel-heading">Test Results</div>
+							<div class="panel-body testResults"></div>
+						</div>
+						<div class="panel panel-default">
+							<div class="panel-heading">Notes <button class="btn btn-default pull-right btn-action-change-textnotes" type "button">Edit</button></div>
+							<div class="panel-body textNotes"></div>
+						</div>
+					</div>
+				</div>
+			</script>
+			{% endraw %}
+			{% raw %}
+			<script id="project-signal-template" type="text/x-handlebars-template">
+				<div id="project-{{id}}-signal" class="signal-page">
+					<h4>
+						<button class="btn btn-default pull-right btn-action-back" type "button">Cancel</button>
+						<span></span>
+					</h4>
+					<div class="panel panel-default mutation-coverage">
+						<div class="panel-heading">
+							<div class="pull-left">
+								Current mutation coverage
+							</div>
+							<div class="progress">
+								<div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="2" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: 100%;">
+									Loading...
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading">Textual requirement</div>
+						<div class="panel-body textRequirement">{{textRequirement}}</div>
+					</div>
+					<div class="panel panel-default test-signals-section">
+						<div class="panel-heading">Test signal</div>
+						<div class="panel-body test-signals"></div>
+					</div>
+					<div class="panel panel-default test-evaluation-section">
+						<div class="panel-heading">Does the signal satisfy the textual requirement?</div>
+						<div class="panel-body evaluation">
+							<div class="col-xs-6">
+								<button class="btn btn-default btn-action-sat" type "button">
+									<span class="glyphicon glyphicon-ok-sign icon-success" aria-hidden="true"></span>
+									<span>Yes</span>
+								</button>
+							</div class="col-xs-6">
+							<div>
+								<button class="btn btn-default btn-action-unsat" type "button">
+									<span class="glyphicon glyphicon-remove-sign icon-danger" aria-hidden="true"></span>
+									<span>No</span>
+								</button>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-default test-success-section">
+						<div class="panel-heading">Success</div>
+						<div class="panel-body bg-success">
+							All tests evaluated!
+							<button class="btn btn-default btn-action-back pull-right" type "button">
+								<span class="glyphicon glyphicon-ok icon-success" aria-hidden="true"></span>
+								<span>Go back to project overview</span>
+							</button>
+						</div>
+					</div>
+				</div>
+			</script>
+			{% endraw %}
+		</div>
+	</div>
+	{% raw %}
+	<script id="message-loading" type="text/x-handlebars-template">
+		<div class="message alert alert-info" role="alert">
+			<span class="glyphicon glyphicon-refresh gly-spin"></span> Loading...
+		</div>
+	</script>
+	{% endraw %}
+	{% raw %}
+	<script id="project-test-results" type="text/x-handlebars-template">
+		<table class="table">
+			<thead>
+				<tr class="row-test">
+					<th>Test #</th>
+					<th><button class="btn btn-default pull-right" type "button">{{showResultsButtonText}}</button></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="row-candidate">
+					<td>current STL candidate</td>
+					<td></td>
+				</tr>
+				<tr class="old-head visualInspection">
+					<td>Visual inspection results</td>
+					<td></td>
+				</tr>
+				<tr class="newVisualInspection">
+					<td>
+						<form><input type="text" name="visual-inspection-name" id="visual-inspection-name" value="Name" class="ui-widget-content ui-corner-all"></form>
+					</td>
+					<td><button class="btn btn-default pull-right" type "button">New visual inspection</button></td>
+				</tr>
+				<!--
+				<tr class="old-head oldStlCandidates">
+					<td>Old STL candidates</td>
+					<td><button class="btn btn-default pull-right" type"button">Hide results</button></td>
+				</tr>
+				-->
+			</tbody>
+		</table>
+	</script>
+	{% endraw %}
+	{% raw %}
+	<script id="project-test-entry" type="text/x-handlebars-template">
+		<td class="{{conflictClass}} row-entry">
+			<span class="glyphicon {{iconClasses}}" aria-hidden="true"></span>
+		</td>
+	</script>
+	{% endraw %}
+	{% raw %}
+	<script id="project-test-row" type="text/x-handlebars-template">
+		<tr class="{{id}}">
+			<td>{{name}}</td>
+			<td><button class="btn btn-default pull-right" type "button">Continue inspection</button></td>
+		</tr>
+	</script>
+	{% endraw %}
+	{% raw %}
+	<script id="project-signal-canvas" type="text/x-handlebars-template">
+		<div style="position: relative;">
+			<canvas id="{{id}}"></canvas>
+		</div>
+	</script>
+	{% endraw %}
+	{% raw %}
+	<script id="signal-message" type="text/x-handlebars-template">
+		<div class="alert alert-{{type}} alert-dismissable">
+			{{message}}
+		</div>
+	</script>
+	{% endraw %}
+</body>
+
+</html>
