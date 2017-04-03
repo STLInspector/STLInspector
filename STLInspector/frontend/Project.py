@@ -1,5 +1,5 @@
-from core.parsing import *
-from core.testgeneration import *
+from ..core.parsing import *
+from ..core.testgeneration import *
 from fractions import gcd
 
 # represents one open project

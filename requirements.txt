@@ -1,5 +1,0 @@
-flask
-flask_assets
-https://pypi.python.org/packages/65/bd/a66d3ed6862bbad1ef47bbb045ef4e08564b480b6f08f95dd52d785be362/antlr4-python2-runtime-4.6.tar.gz#md5=bf7b80d1b61f416c406127bbe6e7e835
-markdown
-python-markdown-math

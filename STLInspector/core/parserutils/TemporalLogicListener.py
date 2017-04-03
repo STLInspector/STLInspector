@@ -1,7 +1,7 @@
 # Generated from TemporalLogic.g4 by ANTLR 4.6
 from antlr4 import *
 
-from core.temporallogic import *
+from ..temporallogic import *
 import re as regex
 
 

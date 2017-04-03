@@ -1,0 +1,24 @@
+include README.md
+include LICENSE
+
+# include example requirement
+include STLInspector/data/Example_Requirement.stlinspector
+
+# antlr generated files
+include STLInspector/core/parserutils/TemporalLogic.g4
+include STLInspector/core/parserutils/TemporalLogic.tokens
+include STLInspector/core/parserutils/TemporalLogicLexer.tokens
+
+# include documentation
+include STLInspector/doc/*.md
+include STLInspector/doc/images/*
+
+# include all frontend files
+recursive-include STLInspector/frontend *.py *.js *.css *.html *.png *.svg
+
+# patterns to exclude from any directory
+global-exclude *~
+global-exclude *.pyc
+global-exclude *.pyo
+global-exclude .git
+global-exclude .ipynb_checkpoints

@@ -4,8 +4,6 @@ from flask import Flask, render_template, abort, Response, request, Markup, send
 from flask_assets import Bundle, Environment
 from os.path import join, realpath, dirname
 from os import sys, path
-# Make the core module available
-sys.path.append(join(dirname(dirname(path.abspath(__file__))), 'core'))
 from .ProjectList import ProjectList
 import json
 import markdown

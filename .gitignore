@@ -1,1 +1,5 @@
 *.pyc
+
+# with setuptools generated files
+dist
+*.egg-info

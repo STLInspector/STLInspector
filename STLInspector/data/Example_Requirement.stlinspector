@@ -144,7 +144,7 @@
     ]
   }, 
   "title": "Example Requirement", 
-  "textRequirement": "At some time in the first 30 seconds, the vehicle speed (vel) will go over 100 km/h and stay above 100 km/h for 20 seconds.", 
+  "textRequirement": "At some time in the first 30 seconds, the vehicle speed (vel) will go over 100 km/h and stay above 100 km/h for 20 seconds.asd", 
   "stepWidth": 10, 
   "mutants": [
     {

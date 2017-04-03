@@ -5,7 +5,7 @@ from antlr4 import *
 from io import StringIO
 
 
-from core.temporallogic import *
+from ..temporallogic import *
 import re as regex
 
 
