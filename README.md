@@ -26,7 +26,7 @@ You do not need to install the javascript frameworks, the GUI of STLInspector re
 
 ## Tutorial
 
-This is a tutorial that demonstrates how to use [STLInspector](http://github.com/STLInspector/STLInspector). It shows the standard workflow of the program with an example requirement. For a deeper understanding consider reading the [documentation](http://github.com/STLInspector/STLInspector/doc).
+This is a tutorial that demonstrates how to use [STLInspector](http://github.com/STLInspector/STLInspector). It shows the standard workflow of the program with an example requirement. For a deeper understanding consider reading the [documentation](http://github.com/STLInspector/STLInspector/STLInspector/doc).
 
 1. Start the server by executing `python start.py` in the
    [STLInspector](http://github.com/STLInspector/STLInspector) folder.
@@ -60,11 +60,11 @@ requirement!
 
 ## Documentation
 
-Further information can be found in the [documentation](http://github.com/STLInspector/STLInspector/doc) that details the use of the web-based GUI, the parser and the mutation operators. The GUI provides a html version of the documentation.
+Further information can be found in the [documentation](http://github.com/STLInspector/STLInspector/STLInspector/doc) that details the use of the web-based GUI, the parser and the mutation operators. The GUI provides a html version of the documentation.
 
 ## Contributing
 
-We greatly appreciate fixes and new features for [STLInspector](http://github.com/STLInspector/STLInspector). All contributions to this project should be sent as pull requests on github.
+We greatly appreciate fixes and new features for [STLInspector](http://github.com/STLInspector/STLInspector). All contributions to this project should be sent as pull requests on github. [STLInspector](http://github.com/STLInspector/STLInspector) uses *semantic versioning* as described in [packaging.python.org](https://packaging.python.org/distributing/#choosing-a-versioning-scheme).
 
 ## Licence
 [STLInspector](http://github.com/STLInspector/STLInspector) is released under the [Apache Licence 2.0](https://github.com/STLInspector/STLInspector/blob/master/LICENSE).
