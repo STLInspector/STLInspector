@@ -147,3 +147,8 @@ class NOT(Clause):
 
     def ufc_minus(self):
         return [y for y in self.operand1.ufc_plus()]
+
+    @remove_duplicates
+    def picc(self):
+        return [y for y in self.operand1.picc()]
+

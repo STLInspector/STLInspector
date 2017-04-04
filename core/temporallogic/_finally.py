@@ -130,3 +130,13 @@ class FINALLY(Clause):
         return [UNTIL(NOT(self.operand1),
                       AND(y, GLOBALLY(NOT(self.operand1), self.lower_bound, self.upper_bound)), 
                       self.lower_bound, self.upper_bound) for y in self.operand1.ufc_minus()]
+
+    @remove_duplicates
+    def picc(self):
+        from until import UNTIL
+        from _not import NOT
+        from _and import AND
+        from _or import OR
+        return [UNTIL(NOT(self.operand1),
+                      AND(y, OR(self.operand1, FINALLY(self.operand1, self.lower_bound, self.upper_bound))),
+                      self.lower_bound, self.upper_bound) for y in self.operand1.picc()]

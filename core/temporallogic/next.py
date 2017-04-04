@@ -116,3 +116,6 @@ class NEXT(Clause):
     def ufc_minus(self):
         return [NEXT(y, self.lower_bound) for y in self.operand1.ufc_minus()]
 
+    @remove_duplicates
+    def picc(self):
+        return [NEXT(y, self.lower_bound) for y in self.operand1.picc()]

@@ -165,3 +165,10 @@ class OR(Clause):
         from _not import NOT
         return [AND(y, NOT(self.operand2)) for y in self.operand1.ufc_minus()] \
                + [AND(NOT(self.operand1), y) for y in self.operand2.ufc_minus()]
+
+    @remove_duplicates
+    def picc(self):
+        from _and import AND
+        return [AND(y, self.operand2) for y in self.operand1.picc()] \
+               + [AND(self.operand1, y) for y in self.operand2.picc()]
+

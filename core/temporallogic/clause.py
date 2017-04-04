@@ -459,3 +459,18 @@ class Clause:
               self (Clause) : The formula for which the test predicates are generated.
         """
         pass
+
+    @remove_duplicates
+    def picc(self):
+        """ Generates test predicates to distinguish Property Inactive Clauses [0].
+
+        A Property Inactive Clause (PICC) is a clause of a given formula that can
+        be changed without altering the formula's outcome.
+
+        Args:
+            self (Clause) : The formula for which PICC test predicates are generated.
+
+        References:
+            [0] https://github.com/ec-m/BachelorsThesis/blob/master/thesis.pdf
+        """
+        pass

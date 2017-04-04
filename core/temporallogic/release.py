@@ -189,3 +189,10 @@ class RELEASE(Clause):
         from _not import NOT
         from until import UNTIL
         return NOT(UNTIL(NOT(self.operand1), NOT(self.operand2), self.lower_bound, self.upper_bound)).ufc_minus()
+
+    @remove_duplicates
+    def picc(self):
+        from _not import NOT
+        from until import UNTIL
+        return NOT(UNTIL(NOT(self.operand1), NOT(self.operand2), self.lower_bound, self.upper_bound)).picc()
+

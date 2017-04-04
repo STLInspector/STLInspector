@@ -129,3 +129,10 @@ class GLOBALLY(Clause):
         from until import UNTIL
         return [UNTIL(self.operand1, y, self.lower_bound, self.upper_bound) for y in self.operand1.ufc_minus()]
 
+    @remove_duplicates
+    def picc(self):
+        from until import UNTIL
+        from _and import AND
+        return [UNTIL(self.operand1, AND(y, GLOBALLY(self.operand1, self.lower_bound, self.upper_bound)), 
+                      self.lower_bound, self.upper_bound) for y in self.operand1.picc()]
+
