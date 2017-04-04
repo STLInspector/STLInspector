@@ -21,7 +21,7 @@ Note that the required javascript frameworks are not installed locally, but load
 
 ## Tutorial
 
-This is a tutorial that demonstrates how to use [STLInspector](http://github.com/STLInspector/STLInspector). It shows the standard workflow of the program with an example requirement. For a deeper understanding consider reading the [documentation](http://github.com/STLInspector/STLInspector/STLInspector/doc).
+This is a tutorial that demonstrates how to use [STLInspector](http://github.com/STLInspector/STLInspector). It shows the standard workflow of the program with an example requirement. For a deeper understanding consider reading the [documentation](https://github.com/STLInspector/STLInspector/tree/master/STLInspector/doc).
 
 1. Start the server by executing `stlinspector .`.
 2. Open a browser and go to [http://localhost:5000](http://localhost:5000).
@@ -55,7 +55,7 @@ requirement!
 
 ## Documentation
 
-Further information can be found in the [documentation](http://github.com/STLInspector/STLInspector/STLInspector/doc) that details the use of the web-based GUI, the parser and the mutation operators. The GUI provides a html version of the documentation.
+Further information can be found in the [documentation](https://github.com/STLInspector/STLInspector/tree/master/STLInspector/doc) that details the use of the web-based GUI, the parser and the mutation operators. The GUI provides a html version of the documentation.
 
 ## Contributing
 

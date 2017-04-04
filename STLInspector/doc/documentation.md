@@ -31,7 +31,7 @@ STLInspector is based on [Z3], [antlr], [bootstrap], [Chart.js],
 
 ## Tutorial
 
-This is a tutorial that demonstrates how to use [STLInspector](http://github.com/STLInspector/STLInspector). It shows the standard workflow of the program with an example requirement. For a deeper understanding consider reading the [documentation](http://github.com/STLInspector/STLInspector/STLInspector/doc).
+This is a tutorial that demonstrates how to use [STLInspector](http://github.com/STLInspector/STLInspector). It shows the standard workflow of the program with an example requirement.
 
 1. Start the server by executing `stlinspector .`.
 2. Open a browser and go to [http://localhost:5000](http://localhost:5000).
@@ -65,20 +65,18 @@ requirement!
 	
 ## Web-based GUI User's Guide
 
-STLInspector comes with a web-based grafical user interface. It can be started by running the file `server.py` with python.
-
+STLInspector comes with a web-based grafical user interface. It can be started by running the command:
 ```
-python server.py
+stlinspector <datadir>
 ``` 
 
 The output should look similar to:
 
 ````
-Using datapath /home/STLInspector/data
-Starting STLInspector on port 8080
+ * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
 ````
 
-Here, STLInspector is started on port 8080 and can be accessed with any browser by navigating to [http://localhost:8080](http://localhost:8080). The directory *datapath* is used for storing, saving, and loading files containing requirements validation projects.
+Here, STLInspector is started on port 5000 and can be accessed with any browser by navigating to [http://localhost:5000](http://localhost:5000). The directory *datadir* is used for storing, saving, and loading files containing requirements validation projects.
 
 ### Requirements list
 
