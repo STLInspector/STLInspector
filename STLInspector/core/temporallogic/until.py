@@ -231,3 +231,17 @@ class UNTIL(Clause):
                + [UNTIL(AND(self.operand1, NOT(self.operand2)), 
                         AND(y, NOT(UNTIL(self.operand1, self.operand2, self.lower_bound, self.upper_bound))), 
                         self.lower_bound, self.upper_bound) for y in self.operand2.ufc_minus()]
+
+    @remove_duplicates
+    def picc(self):
+        from _and import AND
+        from _not import NOT
+        from _or import OR
+        return [UNTIL(AND(self.operand1, NOT(self.operand2)), 
+                      AND(y, OR(self.operand2, UNTIL(self.operand1, self.operand2,
+                                                     self.lower_bound, self.upper_bound))),
+                      self.lower_bound, self.upper_bound) for y in self.operand1.picc()] \
+               + [UNTIL(AND(self.operand1, NOT(self.operand2)), 
+                        AND(y, OR(self.operand2, UNTIL(self.operand1, self.operand2,
+                                                       self.lower_bound, self.upper_bound))),
+                        self.lower_bound, self.upper_bound) for y in self.operand2.picc()]

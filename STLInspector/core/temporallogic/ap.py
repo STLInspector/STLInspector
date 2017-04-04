@@ -228,6 +228,10 @@ class AP(Clause):
         from _not import NOT
         return [NOT(self)]
 
+    @remove_duplicates
+    def picc(self):
+        from _not import NOT
+        return [self, NOT(self)]
 
 # True and False are defined during the whole program
 ap_true = AP("True")

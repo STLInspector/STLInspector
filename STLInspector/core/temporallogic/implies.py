@@ -164,3 +164,9 @@ class IMPLIES(Clause):
         from _or import OR
         from _not import NOT
         return OR(NOT(self.operand1), self.operand2).ufc_minus()
+
+    @remove_duplicates
+    def picc(self):
+        from _or import OR
+        from _not import NOT
+        return OR(NOT(self.operand1), self.operand2).picc()
