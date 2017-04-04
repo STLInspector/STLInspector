@@ -17,7 +17,7 @@ STLInspector is a tool for systematic validation of Signal Temporal Logic (STL)
         verification in industrial practice.
 
 STLInspector is based on [Z3], [antlr], [bootstrap], [Chart.js],
-             [Handlebars.js], [jQuery], and [jQuery UI].
+             [Handlebars.js], [jQuery], [jQuery UI], [Flask], and [Flask-Assets].
 
 [Z3]:https://github.com/Z3Prover/z3
 [antlr]:http://www.antlr.org/
@@ -26,15 +26,15 @@ STLInspector is based on [Z3], [antlr], [bootstrap], [Chart.js],
 [Handlebars.js]:http://handlebarsjs.com/
 [jQuery]:https://jquery.com/
 [jQuery UI]:https://jqueryui.com/
+[Flask]:http://flask.pocoo.org/
+[Flask-Assets]:https://flask-assets.readthedocs.io/en/latest/
 
 ## Tutorial
 
-This is a tutorial that shows the standard workflow with an example requirement.
-For a deeper understanding consider reading the following sections of this
-documentation.
+This is a tutorial that demonstrates how to use [STLInspector](http://github.com/STLInspector/STLInspector). It shows the standard workflow of the program with an example requirement. For a deeper understanding consider reading the [documentation](http://github.com/STLInspector/STLInspector/STLInspector/doc).
 
-1. Start the server by executing `python server.py` in the STLInspector folder.
-2. Open a browser and go to [http://localhost:8080](http://localhost:8080).
+1. Start the server by executing `stlinspector .`.
+2. Open a browser and go to [http://localhost:5000](http://localhost:5000).
 3. Press the *new requirements project* button, input the title *tutorial
    requirements project* and press the *add* button. The project overview opens.
 4. In the *textual requirements* block press the *edit* button and input:
@@ -43,7 +43,7 @@ documentation.
 
 5. In the *current STL candidate* block press the *edit* button and input:
 
-    > F[1,3] velocity > 5
+    > F[1,3] velocity > 5                                                       
 
 6. Under *visual inspection results* replace *Name* with *Test User* and press
 *new visual inspection*.
@@ -55,10 +55,11 @@ example the STL candidate is wrong, some of your evaluation results should
 differ from the STL candidate results.
 9. Change the STL candidate to:
 
-    > F[1,3] velocity > 5
-	
+    > G[1,3] velocity > 5                                                       
+
 10. Redo the visual inspection on the new STL candidate.
 11. You should not get conflicting evaluation results for the STL candidate now.
+12. Press the save button and the project is saved to `tutorial_requirements_project.stlinspector` in the current directory.
 Congratulations, you validated the STL candidate against the textual
 requirement!
 	
