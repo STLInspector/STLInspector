@@ -17,21 +17,21 @@ def exceptionHandler(e):
     traceback.print_exc(file=sys.stdout)
     print '-'*60
 
-def run():
+def run(datapath):
+    """
+    starts the frontend server
+    datapath: directory for saving and loading requirement projects
+    """
+
     app = Flask(__name__)
 
-    datapath = realpath(join(realpath(dirname(__file__)), '../data'))
-    """data path where the files are located"""
-
+    # interface to the projects and backend
     projectList = ProjectList(datapath)
-    """interface to the projects and backend"""
 
+    # temporal directory for caching etc.
     tempDir = mkdtemp(prefix="STLInspector")
-    """temporal directory for caching etc."""
 
-    """
-    Bundle the javascript files into one distribution file
-    """
+    #Bundle the javascript files into one distribution file
     bundles = {
         'STLInspector_js': Bundle(
             'js/AlertView.js',

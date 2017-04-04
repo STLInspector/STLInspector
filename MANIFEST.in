@@ -2,7 +2,7 @@ include README.md
 include LICENSE
 
 # include example requirement
-include STLInspector/data/Example_Requirement.stlinspector
+include STLInspector/frontend/data/*.stlinspector
 
 # antlr generated files
 include STLInspector/core/parserutils/TemporalLogic.g4
