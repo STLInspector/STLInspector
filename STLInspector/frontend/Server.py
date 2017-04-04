@@ -58,7 +58,7 @@ def run(datapath):
     if not access(assetsdirectorypath, F_OK):
         mkdir(assetsdirectorypath)
     assets.directory = assetsdirectorypath
-    
+
     assets.register(bundles)
 
     @app.route("/")
@@ -68,6 +68,13 @@ def run(datapath):
         loads and renders the index template
         """
         return render_template('index.html')
+
+    @app.route('/static/build/<path:filename>')
+    def static_build_files(filename):
+        """
+        serve static build files from cache directory
+        """
+        return send_from_directory(join(assetsdirectorypath, 'build'), filename)
 
     @app.route("/documentation/")
     def documentation():
