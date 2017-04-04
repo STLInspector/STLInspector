@@ -3,7 +3,7 @@
 from flask import Flask, render_template, abort, Response, request, Markup, send_from_directory
 from flask_assets import Bundle, Environment
 from os.path import join, realpath, dirname
-from os import sys, path
+from os import sys, path, mkdir, access, F_OK
 from .ProjectList import ProjectList
 import json
 import markdown
@@ -47,7 +47,18 @@ def run(datapath):
             output='build/STLInspector.js'),
     }
     assets = Environment(app)
-    assets.cache = tempDir
+    assetscachepath = join(tempDir, 'assetscache')
+    # create directory if not already present
+    if not access(assetscachepath, F_OK):
+        mkdir(assetscachepath)
+    assets.cache = assetscachepath
+    
+    assetsdirectorypath = join(tempDir, 'assetsdirectory')
+    # create directory if not already present
+    if not access(assetsdirectorypath, F_OK):
+        mkdir(assetsdirectorypath)
+    assets.directory = assetsdirectorypath
+    
     assets.register(bundles)
 
     @app.route("/")
