@@ -7,6 +7,7 @@ from os import sys, path
 from .ProjectList import ProjectList
 import json
 import markdown
+from tempfile import mkdtemp
 
 def exceptionHandler(e):
     print(e)
@@ -24,6 +25,9 @@ def run():
 
     projectList = ProjectList(datapath)
     """interface to the projects and backend"""
+
+    tempDir = mkdtemp(prefix="STLInspector")
+    """temporal directory for caching etc."""
 
     """
     Bundle the javascript files into one distribution file
@@ -43,6 +47,7 @@ def run():
             output='build/STLInspector.js'),
     }
     assets = Environment(app)
+    assets.cache = tempDir
     assets.register(bundles)
 
     @app.route("/")
