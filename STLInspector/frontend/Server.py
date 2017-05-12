@@ -31,7 +31,8 @@ def run(datapath):
     # temporal directory for caching etc.
     tempDir = mkdtemp(prefix="STLInspector")
 
-    #Bundle the javascript files into one distribution file
+    # Bundle the javascript files into one distribution file
+    # and the css file such that it is reloaded on a change
     bundles = {
         'STLInspector_js': Bundle(
             'js/AlertView.js',
@@ -45,6 +46,10 @@ def run(datapath):
             'js/SignalView.js',
             'js/STLInspector.js',
             output='build/STLInspector.js'),
+        'STLInspector_css': Bundle(
+            'css/STLInspector.css',
+            output='build/STLInspector.css'
+        )
     }
     assets = Environment(app)
     assetscachepath = join(tempDir, 'assetscache')
