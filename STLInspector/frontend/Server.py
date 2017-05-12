@@ -23,6 +23,9 @@ def run(datapath):
     datapath: directory for saving and loading requirement projects
     """
 
+    with open(join(dirname(dirname(dirname(__file__))), 'VERSION'), mode='r') as version_file:
+        stlinspector_version = version_file.read()
+
     app = Flask(__name__)
 
     # interface to the projects and backend
@@ -57,7 +60,7 @@ def run(datapath):
     if not access(assetscachepath, F_OK):
         mkdir(assetscachepath)
     assets.cache = assetscachepath
-    
+
     assetsdirectorypath = join(tempDir, 'assetsdirectory')
     # create directory if not already present
     if not access(assetsdirectorypath, F_OK):
@@ -72,7 +75,8 @@ def run(datapath):
 
         loads and renders the index template
         """
-        return render_template('index.html')
+        return render_template('index.html',
+                               stlinspector_version=stlinspector_version)
 
     @app.route('/static/build/<path:filename>')
     def static_build_files(filename):
