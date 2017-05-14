@@ -26,7 +26,7 @@ def run(datapath):
     datapath: directory for saving and loading requirement projects
     """
 
-    with open(join(dirname(dirname(dirname(__file__))), 'VERSION'), mode='r') as version_file:
+    with open(join(dirname(dirname(__file__)), 'VERSION'), mode='r') as version_file:
         stlinspector_version = version_file.read()
 
     app = Flask(__name__)

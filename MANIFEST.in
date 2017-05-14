@@ -1,7 +1,7 @@
 include README
 include LICENSE
 include CHANGELOG.md
-include VERSION
+include STLInspector/VERSION
 
 # include example requirement
 include STLInspector/frontend/data/*.stlinspector

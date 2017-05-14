@@ -3,7 +3,7 @@
 from os.path import dirname, join
 from setuptools import setup
 
-with open(join(dirname(__file__), 'VERSION'), mode='r') as version_file:
+with open(join(dirname(__file__), 'STLInspector', 'VERSION'), mode='r') as version_file:
     VERSION = version_file.read()
 
 with open(join(dirname(__file__), 'README')) as readme_file:
