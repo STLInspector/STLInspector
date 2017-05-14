@@ -7,7 +7,10 @@ from os import sys, path, mkdir, access, F_OK
 from .ProjectList import ProjectList
 import json
 import markdown
+import webbrowser
 from tempfile import mkdtemp
+
+PORT = 5555
 
 def exceptionHandler(e):
     print(e)
@@ -231,4 +234,6 @@ def run(datapath):
             exceptionHandler(e)
             abort(500)
 
-    app.run(debug=False)
+    webbrowser.open_new_tab('http://localhost:{}'.format(PORT))
+    app.run(debug=False, port=PORT)
+    
