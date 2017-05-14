@@ -1,4 +1,7 @@
 
+## 1.1.2
+* Fix another package installation error
+
 ## 1.1.1
 * Fix pip package installation errors
 
