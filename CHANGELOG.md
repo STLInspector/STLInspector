@@ -1,4 +1,7 @@
 
+## 1.1.1
+* Fix pip package installation errors
+
 ## 1.1.0
 * New page design
 * Fix usability issues
