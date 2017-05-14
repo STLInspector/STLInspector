@@ -7,7 +7,10 @@ from os import sys, path, mkdir, access, F_OK
 from .ProjectList import ProjectList
 import json
 import markdown
+import webbrowser
 from tempfile import mkdtemp
+
+PORT = 5555
 
 def exceptionHandler(e):
     print(e)
@@ -23,6 +26,9 @@ def run(datapath):
     datapath: directory for saving and loading requirement projects
     """
 
+    with open(join(dirname(dirname(dirname(__file__))), 'VERSION'), mode='r') as version_file:
+        stlinspector_version = version_file.read()
+
     app = Flask(__name__)
 
     # interface to the projects and backend
@@ -31,7 +37,8 @@ def run(datapath):
     # temporal directory for caching etc.
     tempDir = mkdtemp(prefix="STLInspector")
 
-    #Bundle the javascript files into one distribution file
+    # Bundle the javascript files into one distribution file
+    # and the css file such that it is reloaded on a change
     bundles = {
         'STLInspector_js': Bundle(
             'js/AlertView.js',
@@ -45,6 +52,10 @@ def run(datapath):
             'js/SignalView.js',
             'js/STLInspector.js',
             output='build/STLInspector.js'),
+        'STLInspector_css': Bundle(
+            'css/STLInspector.css',
+            output='build/STLInspector.css'
+        )
     }
     assets = Environment(app)
     assetscachepath = join(tempDir, 'assetscache')
@@ -52,7 +63,7 @@ def run(datapath):
     if not access(assetscachepath, F_OK):
         mkdir(assetscachepath)
     assets.cache = assetscachepath
-    
+
     assetsdirectorypath = join(tempDir, 'assetsdirectory')
     # create directory if not already present
     if not access(assetsdirectorypath, F_OK):
@@ -67,7 +78,8 @@ def run(datapath):
 
         loads and renders the index template
         """
-        return render_template('index.html')
+        return render_template('index.html',
+                               stlinspector_version=stlinspector_version)
 
     @app.route('/static/build/<path:filename>')
     def static_build_files(filename):
@@ -222,4 +234,5 @@ def run(datapath):
             exceptionHandler(e)
             abort(500)
 
-    app.run(debug=False)
+    webbrowser.open_new_tab('http://localhost:{}'.format(PORT))
+    app.run(debug=False, port=PORT)

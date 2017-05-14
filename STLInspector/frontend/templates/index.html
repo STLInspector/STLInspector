@@ -18,7 +18,9 @@
 	<!-- jQuery ui -->
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	<!-- STLInspector -->
-	<link rel="stylesheet" href="{{ url_for('static', filename='css/STLInspector.css') }}">
+	{% assets "STLInspector_css" %}
+	<link rel="stylesheet" href="{{ ASSET_URL }}">
+	{% endassets %}
 
 	<!-- scripts -->
 	<!-- jQuery -->
@@ -50,6 +52,7 @@
 			</div>
 			<div class="navbar-collapse">
 				<p class="navbar-text navbar-right"><a href="documentation" target="_blank">documentation</a></p>
+				<p class="navbar-text navbar-right version">v{{ stlinspector_version }}</p>
 			</div>
 		</div>
 	</nav>

@@ -1,5 +1,8 @@
 *.pyc
 
+# generated readme for pypi
+README
+
 # with setuptools generated files
 dist
 *.egg-info

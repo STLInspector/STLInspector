@@ -1,11 +1,36 @@
 body {
   padding-top: 60px;
+  background-color: #F1F1F1;
 }
 
 /* header */
-.navbar {
-	background-color: white;
-	border-bottom: 1px solid gray;
+.navbar .container {
+	background-color: #5cb85c;
+  color: white;
+	border-color: gray;
+  border-style: solid;
+  border-width: 0 1px 1px 1px;
+  position: relative;
+}
+
+.navbar .container::before {
+  content: '';
+  position: absolute;
+  bottom: -15px;
+  left: 0px;
+  border-color: black transparent transparent transparent;
+  border-style: solid;
+  border-width: 14px 0 0 14px;
+}
+
+.navbar .container::after {
+  content: '';
+  position: absolute;
+  bottom: -15px;
+  right: 0px;
+  border-color: black transparent transparent transparent;
+  border-style: solid;
+  border-width: 14px 14px 0 0;
 }
 
 .navbar .navbar-brand {
@@ -16,12 +41,36 @@ body {
 	background-size: 40px 40px;
 }
 
+.navbar .version {
+  color: rgba(255, 255, 255, 0.7);
+}
+
 .navbar .navbar-collapse > .navbar-text  {
-	margin-right: 0;
+	margin-right: 15px;
+}
+
+.navbar .navbar-collapse a {
+  color: white;
+  text-decoration: underline;
+}
+
+.panel {
+  margin-left: -1.6em;
+  margin-right: -1.6em;
+  border-radius: 0px;
+  box-shadow: 0px 6px 17px 0px rgba(0,0,0,.2);
+  border-left-width: 0;
+  border-right-width: 0;
 }
 
 pre {
 	white-space: pre-wrap;
+}
+
+#tabs {
+  border-width: 0 1px 1px 1px;
+  margin-top: -20px;
+  padding-top: 20px;
 }
 
 #tabs > ul .glyphicon {
@@ -40,6 +89,10 @@ pre {
 	padding: 0 6px;
 }
 
+#overview-page > ul {
+  margin-bottom: 0;
+}
+
 #overview-page .btn-group {
 	margin-top: -1px;
 }
@@ -48,10 +101,6 @@ pre {
 	width: 9em;
 	margin-right: 10px;
 	margin-top: 2px;
-}
-
-#tabs > div  :last-child {
-	margin-bottom: 0px;
 }
 
 #tabs > div  h5,
@@ -70,6 +119,14 @@ pre {
 
 .panel-heading .pull-left {
 	margin-right: 1em;
+}
+
+.panel-body :last-child {
+  margin-bottom: 0;
+}
+
+.container .project-page {
+  padding-bottom: 0;
 }
 
 .project-page .panel-heading .btn {

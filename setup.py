@@ -1,8 +1,14 @@
 from setuptools import setup
+from os.path import dirname, join
 
-setup(name='STLInspector',
-    version='1.0.1',
-    description='Systematic validation of Signal Temporal Logic (STL) specifications against informal textual requirements.',
+with open(join(dirname(__file__), 'VERSION'), mode='r') as version_file:
+    VERSION = version_file.read()
+
+setup(
+    name='STLInspector',
+    version=VERSION,
+    description='Systematic validation of Signal Temporal Logic (STL) specifications' \
+        + ' against informal textual requirements.',
     classifiers=[
         'Development Status :: 4 - Beta',
         'Environment :: Web Environment',
@@ -25,7 +31,7 @@ setup(name='STLInspector',
         'antlr4-python2-runtime',
         'z3-solver'
     ],
-    entry_points = {
+    entry_points={
         'console_scripts': ['stlinspector=STLInspector.command_line:main'],
     },
     include_package_data=True,

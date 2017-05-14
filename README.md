@@ -14,7 +14,7 @@ Additionally, the GUI depends on [Bootstrap](http://getbootstrap.com/), [jQuery]
 Install the Python 2 >= 2.7.9 using your package manager or download it from
 http://www.python.org/downloads. This also provides the Python package manager pip. [STLInspector](http://github.com/STLInspector/STLInspector) is provided as an [python package](https://pypi.python.org/pypi/STLInspector) and can be installed using pip:
 ```bash
-sudo pip install STLInspector
+pip install STLInspector
 ```
 
 Note that the required javascript frameworks are not installed locally, but loaded over an internet connection. This comes with the restriction that you can used the GUI with an internet connection only. Due to safety reasons, network access to the GUI is forbidden and the GUI is only available via localhost.
