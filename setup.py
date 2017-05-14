@@ -1,14 +1,20 @@
-from setuptools import setup
+"""setup file for the package manager"""
+
 from os.path import dirname, join
+from setuptools import setup
 
 with open(join(dirname(__file__), 'VERSION'), mode='r') as version_file:
     VERSION = version_file.read()
+
+with open(join(dirname(__file__), 'README')) as readme_file:
+    README = readme_file.read()
 
 setup(
     name='STLInspector',
     version=VERSION,
     description='Systematic validation of Signal Temporal Logic (STL) specifications' \
         + ' against informal textual requirements.',
+    long_description=README,
     classifiers=[
         'Development Status :: 4 - Beta',
         'Environment :: Web Environment',
