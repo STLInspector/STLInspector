@@ -298,16 +298,17 @@ function ProjectsView(tabs, dom, projects, alertView) {
     }
 
     // initialize new project dialog and form
+    var submitAction = _ => {
+        this._createProject(
+            this._newDialog.find('form #project-new-title').val()
+        );
+        this._newDialog.dialog("close");
+    }
     this._newDialog = this._dom.find("#project-new-dialog").dialog({
         autoOpen: false,
         modal: true,
         buttons: {
-            Add: _ => {
-                this._createProject(
-                    this._newDialog.find('form #project-new-title').val()
-                );
-                this._newDialog.dialog("close");
-            },
+            Add: submitAction,
             Cancel: _ => {
                 this._newDialog.dialog("close");
             }
@@ -316,6 +317,11 @@ function ProjectsView(tabs, dom, projects, alertView) {
             this._newDialog.find("form")[0].reset();
         }
     });
+    this._newDialog.find( "form" ).on( "submit", event => {
+        event.preventDefault();
+        submitAction();
+    });
+ 
 
     // initialize delete project dialog
     this._deleteDialog = this._dom.find("#project-delete-dialog").dialog({

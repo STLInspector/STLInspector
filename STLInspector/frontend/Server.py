@@ -236,4 +236,3 @@ def run(datapath):
 
     webbrowser.open_new_tab('http://localhost:{}'.format(PORT))
     app.run(debug=False, port=PORT)
-    
