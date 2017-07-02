@@ -4,6 +4,15 @@ from antlr4 import *
 # This class defines a complete listener for a parse tree produced by TemporalLogicParser.
 class TemporalLogicListener(ParseTreeListener):
 
+    # Enter a parse tree produced by TemporalLogicParser#pos_scaled_variable.
+    def enterPos_scaled_variable(self, ctx):
+        pass
+
+    # Exit a parse tree produced by TemporalLogicParser#pos_scaled_variable.
+    def exitPos_scaled_variable(self, ctx):
+        pass
+
+
     # Enter a parse tree produced by TemporalLogicParser#NotCase.
     def enterNotCase(self, ctx):
         pass
@@ -19,6 +28,15 @@ class TemporalLogicListener(ParseTreeListener):
 
     # Exit a parse tree produced by TemporalLogicParser#TrueCase.
     def exitTrueCase(self, ctx):
+        pass
+
+
+    # Enter a parse tree produced by TemporalLogicParser#BooleanVarCase.
+    def enterBooleanVarCase(self, ctx):
+        pass
+
+    # Exit a parse tree produced by TemporalLogicParser#BooleanVarCase.
+    def exitBooleanVarCase(self, ctx):
         pass
 
 
@@ -64,6 +82,15 @@ class TemporalLogicListener(ParseTreeListener):
 
     # Exit a parse tree produced by TemporalLogicParser#AndCase.
     def exitAndCase(self, ctx):
+        pass
+
+
+    # Enter a parse tree produced by TemporalLogicParser#APCase.
+    def enterAPCase(self, ctx):
+        pass
+
+    # Exit a parse tree produced by TemporalLogicParser#APCase.
+    def exitAPCase(self, ctx):
         pass
 
 

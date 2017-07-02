@@ -31,12 +31,13 @@ class AP(Clause):
         AP(None, (3,) , operator.ne, 4, 'a') - Real atomic proposition 3a != 4.
         AP(None, None , operator.lt, 42, 'a') - Real atomic proposition a < 42.        
     """
-    
+
     def __init__(self, name, c=None, operator=None, b=None, variables=None):
         self.c = None if c is None else [float(x) for x in c if (isinstance(x, (float, int)) or x.replace('.', '').replace(' ', '').lstrip('-+').isdigit())]
         self.operator = operator
         self.b = b
-        self.variables = None if variables is None else [str(x.strip()) for x in variables if not x == '']
+        self.variables = variables
+        #None if variables is None else [str(x.strip()) for x in variables if not x == '']
         self.name = self.get_name(name)
         
     def get_name(self, name):     
