@@ -330,57 +330,65 @@ grammar. Also, variables are not allowed to start with a number.
 
 > Examples: `a`, `VAR` or `MyVar42`.
 
-Relational expressions have the form `c^T x operator b` where `c` is a vector of
-numbers, `x` denotes a vector of variables, `operator` is one of the relational
-operators `>`, `<`, `>=`, `<=`, `==`, `!=`, and `b` is a single number.
+Relational expressions have the form `lincomb operator b` where `lincomb` is a
+linear combination of real-valued variables, `operator` is
+one of the relational operators `>`, `<`, `>=`, `<=`, `==`, `!=`, and `b` is a
+single number.
 
-> Examples: `(1, 2)^T (x, y) <= 3` or `(1, 10, 100, 1000)^T (w, x, y, z) == 42`.
-
-To avoid the use of one-dimensional vectors, we also allow the format `c x
-operator b` where `c` is a single number that is optional and `x` is a single
-variable.
-
-> Examples: `3x < 4`, `42y != 42` or `x >= 9`. 
-
+> Examples: `42*x != 4.2`, `x + 2*y <= 3`, or `w - x + 10*y - 0.1*z == 42`.
 
 ### Propositional Logic
 
-Conjunctions are written with `&` as the operator. When only atomic propositions are conjoined, we do not need brackets around the operands.
+Conjunctions are written with `&` as the operator.
 
-> Examples: `a & b`, `a & b & c` or `(1,2)^T (x,y) != 4 & booleanVar & 3x > 4`.
+> Examples: `a & b`, `a & b & c` or `x+2*y != 4 & booleanVar & 3*x > 4`.
 
-However, as soon as one of the operators is another (temporal) logical formula, brackets are needed around this operand.
+Disjunctions are written with `|` as the operator.
 
-> Examples: `(1,2)^T (x,y) != 4 & (booleanVar | 3x > 4)` or `a & (F[1,2] b) & (a U[3,4] b)`.
+> Examples: `a | b`, `booleanVar | x-y <= 3)` or `a | (b & c) | d`.
 
-Disjunctions are written with `|` as the operator. The same rules as for conjunctions apply concerning brackets. 
+Implications are written with `->` as the operator. When no brackets are used for implications such as `a -> b -> c` the formula is interpreted as `((a -> b) -> c)`. 
 
-> Examples: `a | b`, `booleanVar | (F[1,2] (1, 2)^T (x, y) <= 3)` or `a | (b & c) | d`.
+> Examples: `a -> b`, `a -> (a & c)` or `x+2*y <= 3 -> 4*x+5*y <= 6`.
 
-Implications are written with `->` as the operator. The same rules as for conjunctions and disjunctions apply concerning brackets. When no brackets are used for implications such as `a -> b -> c` the formula is interpreted as `((a -> b) -> c)`. 
+Negation is done via the `!` operator.
 
-> Examples: `a -> b`, `a -> (F[1,2] c)` or `(1, 2)^T (x, y) <= 3 -> (4, 5)^T (x, y) <= 6`.
-
-Negation is done via the `!` operator. Brackets are set the same way as for Finally, Globally and Next - see rules below. 
-
-> Examples: `! a`, `! (1, 2)^T (x, y) <= 3`, `! (a | b)` or `! (a | (b U[1,2] !c))`.
+> Examples: `! a`, `! x+2*y <= 3` or `! (a | b)`.
 
 ### Signal Temporal Logic
 
-All following signal temporal logic operators have to be bounded by an interval. The interval is written as `[number, number]`. Moreover, all operands that consists of single atomic propositions do not need to be enclosed in brackets. However, operands that consist of connectives have to be set in brackets.
+All following signal temporal logic operators, but the next operator, have to be bounded by an interval. The interval is written as `[number, number]`.
 
 The temporal operator Finally can be expressed by either `F` or `<>`. 
 
-> Examples: `F[1,2] singleAP`, `<>[0,1] (1, 2)^T (x, y) <= 3` or `F[0,42](a & b)`.  
+> Examples: `F[1,2] a`, `<>[0,1] x-y <= 3` or `F[0,42] (a & b)`.  
 
 Globally is written as `G` or `[]`.
 
-> Examples: `G[1,2] singleAP`, `[][0,1] (1, 2)^T (x, y) <= 3`, `G[0,42](a | b)` or `G[3,4] (a -> (b U[4,3] c))`.
+> Examples: `G[1,2] a`, `[][0,1] x-y <= 3`, `G[0,42](a | b)` or `G[3,4] (a -> (b U[4,3] c))`.
 
-Next is written as \texttt{N} or \texttt{o}. Its interval consists of a single number that represents the step that is taken.
+Next is written as `N` or `o`. Its interval consists of a single number that represents the time step.
 
-> Examples: `o[1] a`, `N[1] (1, 2)^T (x, y) <= 3`, `N[42] (a | b)` or `N[2] (a | (b U[3,4] c))`.
+> Examples: `o[1] a`, `N[1] x-y <= 3`, `N[42] (a | b)` or `N[2] (a | (b U[3,4] c))`.
 
-The temporal operators Until and Release are written as `U` and `R` respectively. For brackets the same rules apply as for conjunctions, disjunctions and implications - see rules above. 
+The temporal operators Until and Release are written as `U` and `R` respectively.
 
 > Examples: `a U[1,2] b`, `a R[1,2] b`, `a U[0,42] (b | c)` or `(a U[3,5] c) R[0,2] (b U[7,11] c)`.
+
+### Precedence
+
+Without brackets, the parser applies the following order of operator precedence:
+
+2. Not operator `!`
+3. And operator `&`
+4. Or operator `|`
+5. Implies operator `->`
+6. Globally operator `G`
+7. Finally operator `F`
+8. Next operator `N`
+9. Until operator `U`
+10. Release operator `R`
+
+> Example: `F[0, 1] ! a U[0,42] b < 7` and `(F[0.0,1.0] (! a)) U[0.0,42.0] (b < 7.0)` produce the same result.
+
+We recommend the heavy use of brackets in formulas to improve readability.
