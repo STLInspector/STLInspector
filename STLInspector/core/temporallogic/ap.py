@@ -12,7 +12,7 @@ class AP(Clause):
     
     Attributes:
         name (str) : String used for printing.
-        c (tuple) : Tuple of integers.
+        c (tuple) : Tuple of floats.
         operator (operator) : Can be one of the following
                               operator.lt(a, b) -- <
                               operator.le(a, b) -- <=
@@ -22,7 +22,7 @@ class AP(Clause):
                               operator.gt(a, b) -- >
         b (float) : Boundary value.
         variables (tuple) : Tuple of string that represent
-                            variables. The tuple has the
+                            variables. The tuple must be the
                             same length as the attribute c.
                             
     Examples:
@@ -33,14 +33,15 @@ class AP(Clause):
     """
 
     def __init__(self, name, c=None, operator=None, b=None, variables=None):
-        self.c = None if c is None else [float(x) for x in c if (isinstance(x, (float, int)) or x.replace('.', '').replace(' ', '').lstrip('-+').isdigit())]
+        if c is not None and (variables is None or len(c) != len(variables)):
+            raise Exception('variables and c do not have the same length')
+        self.c = c
         self.operator = operator
         self.b = b
         self.variables = variables
-        #None if variables is None else [str(x.strip()) for x in variables if not x == '']
         self.name = self.get_name(name)
-        
-    def get_name(self, name):     
+
+    def get_name(self, name):
         if name is not None:
             return name
         else:
@@ -52,14 +53,20 @@ class AP(Clause):
                 eq: '==',
                 ne: "!="
             }
-            if self.c is not None and not self.c == list():
-                if len(self.c) == 1:
-                    return '{0} {1} {2} {3}'.format(self.c[0], self.variables[0], o[self.operator], self.b)
-                return '{0}^T {1} {2} {3}'.format(tuple(self.c), tuple(self.variables), o[self.operator], self.b)
-            elif self.b is not None:
-                if len(self.variables) == 1:
-                    return '{0} {1} {2}'.format(self.variables[0], o[self.operator], self.b)
-                return '{0} {1} {2}'.format(tuple(self.variables), o[self.operator], self.b)
+            if self.c is not None:
+                lincomb = []
+                for i in range(len(self.c)):
+                    factor = '{:+}*'.format(self.c[i])
+                    # remove unnecessary 1* etc.
+                    if factor == '+1*':
+                        factor = '+'
+                    elif factor == '-1*':
+                        factor = '-'
+                    # first element does not need a + sign
+                    if len(lincomb) == 0 and factor[0] == '+':
+                        factor = factor[1:]
+                    lincomb.append(factor + self.variables[i])
+                return '{} {} {}'.format(''.join(lincomb), o[self.operator], self.b)
         
     def __str__(self):         
         return str(self.name).translate(None, "'")
