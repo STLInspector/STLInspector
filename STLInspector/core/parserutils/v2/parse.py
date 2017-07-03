@@ -22,7 +22,7 @@ def main():
     #input = InputStream('  (!  true |false&true|false)')
     #input = InputStream('rue)') # todo: Throw lexer error here
     #input = InputStream('  (!  true |false&true|false')
-    input = InputStream('! 35*abc + tdc <= 31.5')
+    input = InputStream('<>[0,1] a R[0,1] (a | 35*abc - tdc <= 31.5) & b & abc -> Ga')
     lexer = TemporalLogicLexer(input)
     stream = CommonTokenStream(lexer)
     #stream.fill(); print([token.text for token in stream.tokens])

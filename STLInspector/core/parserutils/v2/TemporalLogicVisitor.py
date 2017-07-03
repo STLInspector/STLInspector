@@ -42,6 +42,11 @@ class TemporalLogicVisitor(ParseTreeVisitor):
         return ap_false
 
 
+    # Visit a parse tree produced by TemporalLogicParser#BooleanVarCase.
+    def visitBooleanVarCase(self, ctx):
+        return AP(ctx.children[0].getText())
+
+
     def visitScaledVariableCase(self, ctx):
         if len(ctx.children) == 1:
             return 1, ctx.children[0].getText()
@@ -103,6 +108,51 @@ class TemporalLogicVisitor(ParseTreeVisitor):
         left = self.visit(ctx.left)
         right = self.visit(ctx.right)
         return AND(left, right)
+
+
+    # Visit a parse tree produced by TemporalLogicParser#ImpliesCase.
+    def visitImpliesCase(self, ctx):
+        left = self.visit(ctx.left)
+        right = self.visit(ctx.right)
+        return IMPLIES(left, right)
+
+
+    # Visit a parse tree produced by TemporalLogicParser#GloballyCase.
+    def visitGloballyCase(self, ctx):
+        child = self.visit(ctx.child)
+        return GLOBALLY(child,
+                        float(ctx.leftlimit.text),
+                        float(ctx.rightlimit.text))
+
+
+    # Visit a parse tree produced by TemporalLogicParser#FinallyCase.
+    def visitFinallyCase(self, ctx):
+        child = self.visit(ctx.child)
+        return FINALLY(child,
+                       float(ctx.leftlimit.text),
+                       float(ctx.rightlimit.text))
+
+
+    # Visit a parse tree produced by TemporalLogicParser#NextCase.
+    def visitNextCase(self, ctx):
+        child = self.visit(ctx.child)
+        return NEXT(child, float(ctx.offset.text))
+
+
+    # Visit a parse tree produced by TemporalLogicParser#UntilCase.
+    def visitUntilCase(self, ctx):
+        left = self.visit(ctx.left)
+        right = self.visit(ctx.right)
+        return UNTIL(left, right,
+                     float(ctx.leftlimit.text), float(ctx.rightlimit.text))
+
+
+    # Visit a parse tree produced by TemporalLogicParser#ReleaseCase.
+    def visitReleaseCase(self, ctx):
+        left = self.visit(ctx.left)
+        right = self.visit(ctx.right)
+        return RELEASE(left, right,
+                     float(ctx.leftlimit.text), float(ctx.rightlimit.text))
 
 
     # Visit a parse tree produced by TemporalLogicParser#ParensCase.

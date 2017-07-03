@@ -13,12 +13,12 @@ class TemporalLogicListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by TemporalLogicParser#NotCase.
-    def enterNotCase(self, ctx):
+    # Enter a parse tree produced by TemporalLogicParser#ImpliesCase.
+    def enterImpliesCase(self, ctx):
         pass
 
-    # Exit a parse tree produced by TemporalLogicParser#NotCase.
-    def exitNotCase(self, ctx):
+    # Exit a parse tree produced by TemporalLogicParser#ImpliesCase.
+    def exitImpliesCase(self, ctx):
         pass
 
 
@@ -37,6 +37,15 @@ class TemporalLogicListener(ParseTreeListener):
 
     # Exit a parse tree produced by TemporalLogicParser#BooleanVarCase.
     def exitBooleanVarCase(self, ctx):
+        pass
+
+
+    # Enter a parse tree produced by TemporalLogicParser#FinallyCase.
+    def enterFinallyCase(self, ctx):
+        pass
+
+    # Exit a parse tree produced by TemporalLogicParser#FinallyCase.
+    def exitFinallyCase(self, ctx):
         pass
 
 
@@ -67,15 +76,6 @@ class TemporalLogicListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by TemporalLogicParser#BracketCase.
-    def enterBracketCase(self, ctx):
-        pass
-
-    # Exit a parse tree produced by TemporalLogicParser#BracketCase.
-    def exitBracketCase(self, ctx):
-        pass
-
-
     # Enter a parse tree produced by TemporalLogicParser#AndCase.
     def enterAndCase(self, ctx):
         pass
@@ -91,6 +91,51 @@ class TemporalLogicListener(ParseTreeListener):
 
     # Exit a parse tree produced by TemporalLogicParser#APCase.
     def exitAPCase(self, ctx):
+        pass
+
+
+    # Enter a parse tree produced by TemporalLogicParser#ReleaseCase.
+    def enterReleaseCase(self, ctx):
+        pass
+
+    # Exit a parse tree produced by TemporalLogicParser#ReleaseCase.
+    def exitReleaseCase(self, ctx):
+        pass
+
+
+    # Enter a parse tree produced by TemporalLogicParser#NotCase.
+    def enterNotCase(self, ctx):
+        pass
+
+    # Exit a parse tree produced by TemporalLogicParser#NotCase.
+    def exitNotCase(self, ctx):
+        pass
+
+
+    # Enter a parse tree produced by TemporalLogicParser#GloballyCase.
+    def enterGloballyCase(self, ctx):
+        pass
+
+    # Exit a parse tree produced by TemporalLogicParser#GloballyCase.
+    def exitGloballyCase(self, ctx):
+        pass
+
+
+    # Enter a parse tree produced by TemporalLogicParser#NextCase.
+    def enterNextCase(self, ctx):
+        pass
+
+    # Exit a parse tree produced by TemporalLogicParser#NextCase.
+    def exitNextCase(self, ctx):
+        pass
+
+
+    # Enter a parse tree produced by TemporalLogicParser#BracketCase.
+    def enterBracketCase(self, ctx):
+        pass
+
+    # Exit a parse tree produced by TemporalLogicParser#BracketCase.
+    def exitBracketCase(self, ctx):
         pass
 
 

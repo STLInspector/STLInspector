@@ -1,4 +1,5 @@
 *.pyc
+.vscode
 
 # generated readme for pypi
 README

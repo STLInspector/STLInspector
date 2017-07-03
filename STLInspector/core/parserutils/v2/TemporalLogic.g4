@@ -17,10 +17,15 @@ TOKEN_RB        : ')';
 TOKEN_MULT      : '*';
 TOKEN_ADD       : '+';
 TOKEN_SUB       : '-';
-TOKEN_POSNUMBER	: ((('0'..'9')*'.'('0'..'9')+) | ('0'..'9')+);
-TOKEN_VARIABLE  : [A-EH-MO-QS-TV-Za-np-z_@][A-Za-z0-9_]*;
+TOKEN_IMPLIES	: '->';
+TOKEN_POSNUMBER	: (('0'..'9')* '.' ('0'..'9')+)  |  ('0'..'9')+;
 TOKEN_GLOBALLY 	: '[]' | 'G';
 TOKEN_FINALLY	: '<>' | 'F';
+TOKEN_NEXT		: 'o' | 'N';
+TOKEN_UNTIL     : 'U';
+TOKEN_RELEASE   : 'R';
+// this token is defined after the temporal tokens and thus, overruled for 'G' etc.
+TOKEN_VARIABLE  : [A-Za-z_][A-Za-z0-9_]*;
 TOKEN_WS		: [ \r\t\n]+ ->skip;
 
 pos_scaled_variable: (TOKEN_POSNUMBER TOKEN_MULT)? TOKEN_VARIABLE;
@@ -34,7 +39,12 @@ formula
 	| TOKEN_NOT child=formula # NotCase
     | left=formula TOKEN_AND right=formula # AndCase
 	| left=formula TOKEN_OR right=formula # OrCase
-	| left=formula 'U' '[' TOKEN_POSNUMBER ']' right=formula # UntilCase
+    | left=formula TOKEN_IMPLIES right=formula # ImpliesCase
+    | TOKEN_GLOBALLY '[' leftlimit=TOKEN_POSNUMBER ',' rightlimit=TOKEN_POSNUMBER ']' child=formula # GloballyCase
+    | TOKEN_FINALLY '[' leftlimit=TOKEN_POSNUMBER ',' rightlimit=TOKEN_POSNUMBER ']' child=formula # FinallyCase
+    | TOKEN_NEXT '[' offset=TOKEN_POSNUMBER ']' child=formula # NextCase
+	| left=formula TOKEN_UNTIL '[' leftlimit=TOKEN_POSNUMBER ',' rightlimit=TOKEN_POSNUMBER ']' right=formula # UntilCase
+    | left=formula TOKEN_RELEASE '[' leftlimit=TOKEN_POSNUMBER ',' rightlimit=TOKEN_POSNUMBER ']' right=formula # ReleaseCase
     | TOKEN_LB child=formula TOKEN_RB # BracketCase
     ;
 
