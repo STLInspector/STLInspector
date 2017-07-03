@@ -58,9 +58,9 @@ class AP(Clause):
                 for i in range(len(self.c)):
                     factor = '{:+}*'.format(self.c[i])
                     # remove unnecessary 1* etc.
-                    if factor == '+1*':
+                    if factor == '+1*' or factor == '+1.0*':
                         factor = '+'
-                    elif factor == '-1*':
+                    elif factor == '-1*' or factor == '-1.0*':
                         factor = '-'
                     # first element does not need a + sign
                     if len(lincomb) == 0 and factor[0] == '+':
