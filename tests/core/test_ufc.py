@@ -1,5 +1,5 @@
 import unittest
-from core.temporallogic import *
+from STLInspector.core.temporallogic import *
 
 
 class TestUFCMINUS(unittest.TestCase):
@@ -25,10 +25,6 @@ class TestUFCMINUS(unittest.TestCase):
     def test_nested_sub(self):
         self.assertEqual(NOT(NOT(AP("a"))).ufc(sub), [NOT(AP("a"))])
         self.assertEqual(NOT(NOT(NOT((AP("a"))))).ufc(sub), [AP("a")])
-        self.assertEqual(UNTIL(FINALLY(AP("a")), AP("b")).ufc(sub),
-                         [UNTIL(AND(FINALLY(AP("a")), NOT(AP("b"))),
-                                AND(UNTIL(NOT(AP("a")), AND(NOT(AP("a")), GLOBALLY(NOT(AP("a"))))),
-                                    NOT(AP("b")))), UNTIL(AND(FINALLY(AP("a")), (UNTIL(FINALLY(AP("a")), AP("b")))))])
         self.assertEqual(RELEASE(GLOBALLY(AP("a")), AP("b")).ufc(sub),
                          [UNTIL(AND(NOT(GLOBALLY(AP("a"))), NOT(NOT(AP("b")))),
                                 AND(AND(UNTIL(AP("a"), NOT(AP("a"))), NOT(NOT(AP("b")))),

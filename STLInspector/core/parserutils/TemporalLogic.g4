@@ -1,7 +1,7 @@
 grammar TemporalLogic;
 
 @header {
-from core.temporallogic import *
+from temporallogic import *
 import re as regex
 
 

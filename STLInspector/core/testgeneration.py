@@ -2,7 +2,7 @@ from z3 import z3
 import multiprocessing
 from multiprocessing.pool import ThreadPool
 import random
-from temporallogic import *
+from STLInspector.core.temporallogic import *
 
 
 class Mutant:

@@ -68,7 +68,7 @@ class AP(Clause):
                     lincomb.append(factor + self.variables[i])
                 return '{} {} {}'.format(''.join(lincomb), o[self.operator], self.b)
         
-    def __str__(self):         
+    def __str__(self):
         return str(self.name).translate(None, "'")
     
     def __eq__(self, other):
