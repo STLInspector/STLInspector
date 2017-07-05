@@ -1,7 +1,10 @@
-from antlr4 import *
+''' parses an input to a temporal logic formula '''
+
+from antlr4 import CommonTokenStream, InputStream, FileStream
 from antlr4.error.ErrorListener import ErrorListener
 from parserutils.TemporalLogicLexer import TemporalLogicLexer
 from parserutils.TemporalLogicParser import TemporalLogicParser
+from parserutils.TemporalLogicVisitor import TemporalLogicVisitor, ParseException
 
 
 class AntlrErrorListener(ErrorListener):
@@ -10,10 +13,20 @@ class AntlrErrorListener(ErrorListener):
         super(AntlrErrorListener, self).__init__()
 
     def syntaxError(self, recognizer, offendingSymbol, line, column, msg, e):
-        raise Exception("Syntax Error while parsing with ANTLR.")
+        raise ParseException(msg, line, column)
 
-    def reportContextSensitivity(self, recognizer, dfa, startIndex, stopIndex, prediction, configs):
-        raise Exception("Context Sensitivity Error while parsing with ANTLR.")
+
+def _parse(stream):
+    """ Parses a formula from a stream """
+    lexer = TemporalLogicLexer(stream)
+    stream = CommonTokenStream(lexer)
+    parser = TemporalLogicParser(stream)
+    # hack, no listener setter function available
+    parser._listeners = [AntlrErrorListener()]
+    tree = parser.start()
+    visitor = TemporalLogicVisitor()
+    formula = visitor.visit(tree)
+    return formula
 
 
 def parse_from_path(path):
@@ -25,11 +38,7 @@ def parse_from_path(path):
     Returns:
         Clause: Temporal logic formulae that was parsed.
     """
-    lexer = TemporalLogicLexer(FileStream(path))
-    stream = CommonTokenStream(lexer)
-    parser = TemporalLogicParser(stream)
-    parser._listeners = [AntlrErrorListener()]
-    return parser.start().c
+    return _parse(FileStream(path))
 
 
 def parse(formula):
@@ -41,8 +50,4 @@ def parse(formula):
     Returns:
         Clause: Temporal logic formulae that was parsed.
     """
-    lexer = TemporalLogicLexer(InputStream(formula))
-    stream = CommonTokenStream(lexer)
-    parser = TemporalLogicParser(stream)
-    parser._listeners = [AntlrErrorListener()]
-    return parser.start().c
+    return _parse(InputStream(formula))

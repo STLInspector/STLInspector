@@ -7,14 +7,14 @@ class TestAP(unittest.TestCase):
     def test_str(self):
         self.assertEqual(AP("a").__str__(), "a")
         self.assertEqual(AP("").__str__(), "")
-        self.assertEqual(AP(None, (1, 2), operator.ge, 42, ('x', 'y')).__str__(), "(1.0, 2.0)^T (x, y) >= 42")
-        self.assertEqual(AP(None, (1, 2), operator.gt, 42, ('x', 'y')).__str__(), "(1.0, 2.0)^T (x, y) > 42")
-        self.assertEqual(AP(None, (1, 2), operator.le, 42, ('x', 'y')).__str__(), "(1.0, 2.0)^T (x, y) <= 42")
-        self.assertEqual(AP(None, (1, 2), operator.lt, 42, ('x', 'y')).__str__(), "(1.0, 2.0)^T (x, y) < 42")
-        self.assertEqual(AP(None, (1, 2), operator.eq, 42, ('x', 'y')).__str__(), "(1.0, 2.0)^T (x, y) == 42")
-        self.assertEqual(AP(None, (1, 2), operator.ne, 42, ('x', 'y')).__str__(), "(1.0, 2.0)^T (x, y) != 42")
-        self.assertEqual(AP(None, None, operator.ge, 42, ('x', 'y')).__str__(), "(x, y) >= 42")
-        self.assertEqual(AP(None, None, operator.ge, 42, 'y').__str__(), "y >= 42")
+        self.assertEqual(AP(None, (1, 2), operator.ge, 42, ('x', 'y')).__str__(), "x+2*y >= 42")
+        self.assertEqual(AP(None, (1, 2), operator.gt, 42, ('x', 'y')).__str__(), "x+2*y > 42")
+        self.assertEqual(AP(None, (1, 2), operator.le, 42, ('x', 'y')).__str__(), "x+2*y <= 42")
+        self.assertEqual(AP(None, (1, 2), operator.lt, 42, ('x', 'y')).__str__(), "x+2*y < 42")
+        self.assertEqual(AP(None, (1, 2), operator.eq, 42, ('x', 'y')).__str__(), "x+2*y == 42")
+        self.assertEqual(AP(None, (1, 2), operator.ne, 42, ('x', 'y')).__str__(), "x+2*y != 42")
+        self.assertEqual(AP(None, (1, 1), operator.ge, 42, ('x', 'y')).__str__(), "x+y >= 42")
+        self.assertEqual(AP(None, 1, operator.ge, 42, 'y').__str__(), "y >= 42")
         self.assertEqual(AP(None).__str__(), "None")
 
     def test_eq(self):
@@ -55,20 +55,20 @@ class TestAP(unittest.TestCase):
         self.assertEqual(AP("a").encode(), ('a___0.0', ['(declare-const a___0.0 Bool)']))
         self.assertEqual(AP("a").encode(0.5), ('a___0.5', ['(declare-const a___0.5 Bool)']))
         self.assertEqual(AP(None, (1, 2), operator.ge, 42, ('x', 'y')).encode(),
-                         ('(>= (+ (* 1.0 x___0.0) (* 2.0 y___0.0)) 42)',
+                         ('(>= (+ (* 1 x___0.0) (* 2 y___0.0)) 42)',
                           ['(declare-const x___0.0 Real)', '(declare-const y___0.0 Real)']))
         self.assertEqual(AP(None, (1, 2), operator.ge, 42, ('x', 'y')).encode(42),
-                         ('(>= (+ (* 1.0 x___42.0) (* 2.0 y___42.0)) 42)',
+                         ('(>= (+ (* 1 x___42.0) (* 2 y___42.0)) 42)',
                           ['(declare-const x___42.0 Real)', '(declare-const y___42.0 Real)']))
         self.assertEqual(AP(None, None, operator.ne, 42, ('x', 'y')).encode(),
                          ('(distinct (+ x___0.0 y___0.0) 42)',
                           ['(declare-const x___0.0 Real)', '(declare-const y___0.0 Real)']))
         self.assertEqual(AP(None, None, operator.eq, 42, 'x').encode(),
                          ('(= x___0.0 42)', ['(declare-const x___0.0 Real)']))
-        self.assertEqual(AP(None, (3,), gt, 42, 'x').encode(),
-                         ('(> (* 3.0 x___0.0) 42)', ['(declare-const x___0.0 Real)']))
+        self.assertEqual(AP(None, (3.3,), gt, 42, 'x').encode(),
+                         ('(> (* 3.3 x___0.0) 42)', ['(declare-const x___0.0 Real)']))
         self.assertEqual(AP(None, (3,), gt, 42, 'x').encode(0.5),
-                         ('(and (>= (* 3.0 x___0.0) 42) (and (> (* 3.0 x___0.5) 42) (>= (* 3.0 x___1.0) 42)))',
+                         ('(and (>= (* 3 x___0.0) 42) (and (> (* 3 x___0.5) 42) (>= (* 3 x___1.0) 42)))',
                           ['(declare-const x___0.0 Real)', '(declare-const x___0.5 Real)',
                            '(declare-const x___1.0 Real)']))
 

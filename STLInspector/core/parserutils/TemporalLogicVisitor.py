@@ -120,40 +120,42 @@ class TemporalLogicVisitor(ParseTreeVisitor):
     # Visit a parse tree produced by TemporalLogicParser#GloballyCase.
     def visitGloballyCase(self, ctx):
         child = self.visit(ctx.child)
-        return GLOBALLY(child,
-                        float(ctx.leftlimit.text),
-                        float(ctx.rightlimit.text))
+        leftlimit = float(ctx.leftlimit.text) if ctx.leftlimit is not None else None
+        rightlimit = float(ctx.rightlimit.text) if ctx.rightlimit is not None else None
+        return GLOBALLY(child, leftlimit, rightlimit)
 
 
     # Visit a parse tree produced by TemporalLogicParser#FinallyCase.
     def visitFinallyCase(self, ctx):
         child = self.visit(ctx.child)
-        return FINALLY(child,
-                       float(ctx.leftlimit.text),
-                       float(ctx.rightlimit.text))
+        leftlimit = float(ctx.leftlimit.text) if ctx.leftlimit is not None else None
+        rightlimit = float(ctx.rightlimit.text) if ctx.rightlimit is not None else None
+        return FINALLY(child, leftlimit, rightlimit)
 
 
     # Visit a parse tree produced by TemporalLogicParser#NextCase.
     def visitNextCase(self, ctx):
         child = self.visit(ctx.child)
-        return NEXT(child, float(ctx.offset.text))
+        offset = float(ctx.offset.text) if ctx.offset is not None else None
+        return NEXT(child, offset)
 
 
     # Visit a parse tree produced by TemporalLogicParser#UntilCase.
     def visitUntilCase(self, ctx):
         left = self.visit(ctx.left)
         right = self.visit(ctx.right)
-        return UNTIL(left, right,
-                     float(ctx.leftlimit.text), float(ctx.rightlimit.text))
+        leftlimit = float(ctx.leftlimit.text) if ctx.leftlimit is not None else None
+        rightlimit = float(ctx.rightlimit.text) if ctx.rightlimit is not None else None
+        return UNTIL(left, right, leftlimit, rightlimit)
 
 
     # Visit a parse tree produced by TemporalLogicParser#ReleaseCase.
     def visitReleaseCase(self, ctx):
         left = self.visit(ctx.left)
         right = self.visit(ctx.right)
-        return RELEASE(left, right,
-                     float(ctx.leftlimit.text), float(ctx.rightlimit.text))
-
+        leftlimit = float(ctx.leftlimit.text) if ctx.leftlimit is not None else None
+        rightlimit = float(ctx.rightlimit.text) if ctx.rightlimit is not None else None
+        return RELEASE(left, right, leftlimit, rightlimit)
 
     # Visit a parse tree produced by TemporalLogicParser#ParensCase.
     def visitBracketCase(self, ctx):

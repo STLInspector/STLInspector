@@ -33,12 +33,14 @@ class AP(Clause):
     """
 
     def __init__(self, name, c=None, operator=None, b=None, variables=None):
+        c = [c] if isinstance(c, (int, float)) else c
+        variables = [variables] if isinstance(variables, basestring) else variables
         if c is not None and (variables is None or len(c) != len(variables)):
             raise Exception('variables and c do not have the same length')
-        self.c = c
+        self.c = tuple(c) if c is not None else None
         self.operator = operator
         self.b = b
-        self.variables = variables
+        self.variables = tuple(variables) if variables is not None else None
         self.name = self.get_name(name)
 
     def get_name(self, name):
@@ -53,20 +55,21 @@ class AP(Clause):
                 eq: '==',
                 ne: "!="
             }
+
             if self.c is not None:
                 lincomb = []
                 for i in range(len(self.c)):
-                    factor = '{:+}*'.format(self.c[i])
+                    factor = '{:+g}*'.format(self.c[i])
                     # remove unnecessary 1* etc.
-                    if factor == '+1*' or factor == '+1.0*':
+                    if factor == '+1*':
                         factor = '+'
-                    elif factor == '-1*' or factor == '-1.0*':
+                    elif factor == '-1*':
                         factor = '-'
                     # first element does not need a + sign
                     if len(lincomb) == 0 and factor[0] == '+':
                         factor = factor[1:]
                     lincomb.append(factor + self.variables[i])
-                return '{} {} {}'.format(''.join(lincomb), o[self.operator], self.b)
+                return '{} {} {:g}'.format(''.join(lincomb), o[self.operator], self.b)
         
     def __str__(self):
         return str(self.name).translate(None, "'")
