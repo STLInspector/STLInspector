@@ -5,7 +5,7 @@ from antlr4 import *
 from io import StringIO
 
 
-from ..temporallogic import *
+from STLInspector.core.temporallogic import *
 import re as regex
 
 
@@ -172,16 +172,16 @@ class TemporalLogicParser ( Parser ):
 
     sharedContextCache = PredictionContextCache()
 
-    literalNames = [ u"<INVALID>", u"']'", u"<INVALID>", u"<INVALID>", u"<INVALID>", 
-                     u"<INVALID>", u"'true'", u"'false'", u"'('", u"')'", 
-                     u"'!'", u"'&'", u"'|'", u"'->'", u"<INVALID>", u"<INVALID>", 
+    literalNames = [ u"<INVALID>", u"']'", u"<INVALID>", u"<INVALID>", u"<INVALID>",
+                     u"<INVALID>", u"'true'", u"'false'", u"'('", u"')'",
+                     u"'!'", u"'&'", u"'|'", u"'->'", u"<INVALID>", u"<INVALID>",
                      u"<INVALID>", u"<INVALID>", u"<INVALID>", u"'U'", u"'R'" ]
 
-    symbolicNames = [ u"<INVALID>", u"<INVALID>", u"ANTLR_B", u"ANTLR_C", 
-                      u"ANTLR_VARIABLE", u"ANTLR_OPERATOR", u"ANTLR_TRUE", 
-                      u"ANTLR_FALSE", u"ANTLR_LBR", u"ANTLR_RBR", u"ANTLR_NOT", 
-                      u"ANTLR_AND", u"ANTLR_OR", u"ANTLR_IMPLIES", u"ANTLR_LIMIT_1", 
-                      u"ANTLR_LIMIT_2", u"ANTLR_GLOBALLY", u"ANTLR_FINALLY", 
+    symbolicNames = [ u"<INVALID>", u"<INVALID>", u"ANTLR_B", u"ANTLR_C",
+                      u"ANTLR_VARIABLE", u"ANTLR_OPERATOR", u"ANTLR_TRUE",
+                      u"ANTLR_FALSE", u"ANTLR_LBR", u"ANTLR_RBR", u"ANTLR_NOT",
+                      u"ANTLR_AND", u"ANTLR_OR", u"ANTLR_IMPLIES", u"ANTLR_LIMIT_1",
+                      u"ANTLR_LIMIT_2", u"ANTLR_GLOBALLY", u"ANTLR_FINALLY",
                       u"ANTLR_NEXT", u"ANTLR_UNTIL", u"ANTLR_RELEASE", u"ANTLR_WS" ]
 
     RULE_constant = 0
@@ -198,8 +198,8 @@ class TemporalLogicParser ( Parser ):
     RULE_release = 11
     RULE_start = 12
 
-    ruleNames =  [ u"constant", u"ap", u"simp", u"literal", u"conjunction", 
-                   u"disjunction", u"implication", u"globally", u"myfinally", 
+    ruleNames =  [ u"constant", u"ap", u"simp", u"literal", u"conjunction",
+                   u"disjunction", u"implication", u"globally", u"myfinally",
                    u"mynext", u"until", u"release", u"start" ]
 
     EOF = Token.EOF
@@ -654,7 +654,7 @@ class TemporalLogicParser ( Parser ):
                         self.match(TemporalLogicParser.ANTLR_AND)
                         self.state = 103
                         localctx.b = self.literal()
-                        thelist.append(localctx.b.c) 
+                        thelist.append(localctx.b.c)
                     self.state = 110
                     self._errHandler.sync(self)
                     _alt = self._interp.adaptivePredict(self._input,9,self._ctx)
@@ -742,7 +742,7 @@ class TemporalLogicParser ( Parser ):
                         self.match(TemporalLogicParser.ANTLR_OR)
                         self.state = 121
                         localctx.b = self.literal()
-                        thelist.append(localctx.b.c) 
+                        thelist.append(localctx.b.c)
                     self.state = 128
                     self._errHandler.sync(self)
                     _alt = self._interp.adaptivePredict(self._input,11,self._ctx)
@@ -828,7 +828,7 @@ class TemporalLogicParser ( Parser ):
                     self.match(TemporalLogicParser.ANTLR_IMPLIES)
                     self.state = 139
                     localctx.b = self.implication(2)
-                    localctx.c = IMPLIES(localctx.a.c, localctx.b.c) 
+                    localctx.c = IMPLIES(localctx.a.c, localctx.b.c)
                 self.state = 146
                 self._errHandler.sync(self)
                 _alt = self._interp.adaptivePredict(self._input,13,self._ctx)
@@ -1206,7 +1206,7 @@ class TemporalLogicParser ( Parser ):
                         localctx.c = UNTIL(localctx.a.c, localctx.b.c)
                         pass
 
-             
+
                 self.state = 213
                 self._errHandler.sync(self)
                 _alt = self._interp.adaptivePredict(self._input,18,self._ctx)
@@ -1325,7 +1325,7 @@ class TemporalLogicParser ( Parser ):
                         localctx.c = RELEASE(localctx.a.c, localctx.d.c)
                         pass
 
-             
+
                 self.state = 235
                 self._errHandler.sync(self)
                 _alt = self._interp.adaptivePredict(self._input,20,self._ctx)
@@ -1417,25 +1417,25 @@ class TemporalLogicParser ( Parser ):
     def implication_sempred(self, localctx, predIndex):
             if predIndex == 0:
                 return self.precpred(self._ctx, 1)
-         
+
 
     def until_sempred(self, localctx, predIndex):
             if predIndex == 1:
                 return self.precpred(self._ctx, 2)
-         
+
 
             if predIndex == 2:
                 return self.precpred(self._ctx, 1)
-         
+
 
     def release_sempred(self, localctx, predIndex):
             if predIndex == 3:
                 return self.precpred(self._ctx, 2)
-         
+
 
             if predIndex == 4:
                 return self.precpred(self._ctx, 1)
-         
+
 
 
 
