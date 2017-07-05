@@ -60,7 +60,7 @@ class AP(Clause):
                     return '{0} {1} {2}'.format(self.variables[0], o[self.operator], self.b)
                 return '{0} {1} {2}'.format(tuple(self.variables), o[self.operator], self.b)
         
-    def __str__(self):         
+    def __str__(self):
         return str(self.name).translate(None, "'")
     
     def __eq__(self, other):

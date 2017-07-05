@@ -37,6 +37,7 @@ setup(
         'antlr4-python2-runtime',
         'z3-solver'
     ],
+    test_suite='tests',
     entry_points={
         'console_scripts': ['stlinspector=STLInspector.command_line:main'],
     },
