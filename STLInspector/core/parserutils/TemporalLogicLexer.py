@@ -4,8 +4,7 @@ from __future__ import print_function
 from antlr4 import *
 from io import StringIO
 
-
-from ..temporallogic import *
+from STLInspector.core.temporallogic import *
 import re as regex
 
 
@@ -176,21 +175,21 @@ class TemporalLogicLexer(Lexer):
     modeNames = [ u"DEFAULT_MODE" ]
 
     literalNames = [ u"<INVALID>",
-            u"']'", u"'true'", u"'false'", u"'('", u"')'", u"'!'", u"'&'", 
+            u"']'", u"'true'", u"'false'", u"'('", u"')'", u"'!'", u"'&'",
             u"'|'", u"'->'", u"'U'", u"'R'" ]
 
     symbolicNames = [ u"<INVALID>",
-            u"ANTLR_B", u"ANTLR_C", u"ANTLR_VARIABLE", u"ANTLR_OPERATOR", 
-            u"ANTLR_TRUE", u"ANTLR_FALSE", u"ANTLR_LBR", u"ANTLR_RBR", u"ANTLR_NOT", 
-            u"ANTLR_AND", u"ANTLR_OR", u"ANTLR_IMPLIES", u"ANTLR_LIMIT_1", 
-            u"ANTLR_LIMIT_2", u"ANTLR_GLOBALLY", u"ANTLR_FINALLY", u"ANTLR_NEXT", 
+            u"ANTLR_B", u"ANTLR_C", u"ANTLR_VARIABLE", u"ANTLR_OPERATOR",
+            u"ANTLR_TRUE", u"ANTLR_FALSE", u"ANTLR_LBR", u"ANTLR_RBR", u"ANTLR_NOT",
+            u"ANTLR_AND", u"ANTLR_OR", u"ANTLR_IMPLIES", u"ANTLR_LIMIT_1",
+            u"ANTLR_LIMIT_2", u"ANTLR_GLOBALLY", u"ANTLR_FINALLY", u"ANTLR_NEXT",
             u"ANTLR_UNTIL", u"ANTLR_RELEASE", u"ANTLR_WS" ]
 
-    ruleNames = [ u"T__0", u"F_NUM", u"ANTLR_B", u"ANTLR_C", u"F_VAR", u"ANTLR_VARIABLE", 
-                  u"ANTLR_OPERATOR", u"ANTLR_TRUE", u"ANTLR_FALSE", u"ANTLR_LBR", 
-                  u"ANTLR_RBR", u"ANTLR_NOT", u"ANTLR_AND", u"ANTLR_OR", 
-                  u"ANTLR_IMPLIES", u"ANTLR_LIMIT_1", u"ANTLR_LIMIT_2", 
-                  u"ANTLR_GLOBALLY", u"ANTLR_FINALLY", u"ANTLR_NEXT", u"ANTLR_UNTIL", 
+    ruleNames = [ u"T__0", u"F_NUM", u"ANTLR_B", u"ANTLR_C", u"F_VAR", u"ANTLR_VARIABLE",
+                  u"ANTLR_OPERATOR", u"ANTLR_TRUE", u"ANTLR_FALSE", u"ANTLR_LBR",
+                  u"ANTLR_RBR", u"ANTLR_NOT", u"ANTLR_AND", u"ANTLR_OR",
+                  u"ANTLR_IMPLIES", u"ANTLR_LIMIT_1", u"ANTLR_LIMIT_2",
+                  u"ANTLR_GLOBALLY", u"ANTLR_FINALLY", u"ANTLR_NEXT", u"ANTLR_UNTIL",
                   u"ANTLR_RELEASE", u"ANTLR_WS" ]
 
     grammarFileName = u"TemporalLogic.g4"

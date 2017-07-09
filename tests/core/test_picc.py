@@ -1,5 +1,5 @@
 import unittest
-from core.temporallogic import *
+from STLInspector.core.temporallogic import *
 
 
 class TestPICC(unittest.TestCase):

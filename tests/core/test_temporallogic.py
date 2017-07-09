@@ -1,6 +1,6 @@
 import unittest
 import operator
-from core.temporallogic import *
+from STLInspector.core.temporallogic import *
 
 
 class TestAP(unittest.TestCase):
