@@ -1,5 +1,7 @@
 # STLInspector
 
+This is a general introduction. For developer informations, please read the development.md in the docs directory.
+
 ## Introduction
 
 STLInspector is a tool for systematic validation of Signal Temporal Logic (STL)
