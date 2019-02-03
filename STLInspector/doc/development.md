@@ -9,3 +9,7 @@
 ## Testing
 
 Tests for the core of STLInspector are available. The tests can be executed with `python -m unittest discover`.
+
+## Bump version
+
+Edit `STLInspector/VERSION` and increase version number according to semantic versioning.
