@@ -34,7 +34,7 @@ setup(
         'markdown',
         'flask',
         'flask_assets',
-        'antlr4-python2-runtime',
+        'antlr4-python2-runtime==4.6',
         'z3-solver'
     ],
     test_suite='tests',
