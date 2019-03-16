@@ -1,6 +1,7 @@
 from ..core.parsing import *
 from ..core.testgeneration import *
 from fractions import gcd
+from ..core.z3helper import string_to_z3expression
 
 # represents one open project
 class Project:
@@ -31,8 +32,8 @@ class Project:
         nnf_neg = NOT(nnf_pos)
         (enc_pos, cons_pos) = nnf_pos.negationnormalform().encode()
         (enc_neg, cons_neg) = nnf_neg.negationnormalform().encode()
-        pos = z3.parse_smt2_string(''.join([c for c in list(set(cons_pos))])+'(assert '+enc_pos+')')
-        neg = z3.parse_smt2_string(''.join([c for c in list(set(cons_neg))])+'(assert '+enc_neg+')')
+        pos = string_to_z3expression(''.join([c for c in list(set(cons_pos))])+'(assert '+enc_pos+')')
+        neg = string_to_z3expression(''.join([c for c in list(set(cons_neg))])+'(assert '+enc_neg+')')
         return (pos, neg)
 
     def loadFormula(self):
@@ -72,7 +73,7 @@ class Project:
         for t in tuples:
             conjunction = tuplesToConjunction(t)
             s.push()
-            s.add(z3.parse_smt2_string(conjunction))
+            s.add(string_to_z3expression(conjunction))
             if s.check() == z3.sat:
                 tests.append(s.model())
             s.pop()

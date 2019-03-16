@@ -3,7 +3,7 @@ import multiprocessing
 from multiprocessing.pool import ThreadPool
 import random
 from STLInspector.core.temporallogic import *
-
+from STLInspector.core.z3helper import string_to_z3expression
 
 class Mutant:
     """
@@ -44,8 +44,8 @@ class Mutant:
         self.z3string_pos = dictionary['z3string_pos']
         self.z3string_neg = dictionary['z3string_neg']
         self.cons_strings = dictionary['constants']
-        self.z3_pos = z3.parse_smt2_string(self.z3string_pos)
-        self.z3_neg = z3.parse_smt2_string(self.z3string_neg)
+        self.z3_pos = string_to_z3expression(self.z3string_pos)
+        self.z3_neg = string_to_z3expression(self.z3string_neg)
         self.killed = dictionary['killed']
 
 
@@ -126,8 +126,8 @@ def initialize(formula):
     f_nnf_neg = NOT(f_nnf_pos)
     (f_enc_pos, f_cons_pos) = f_nnf_pos.negationnormalform().encode()
     (f_enc_neg, f_cons_neg) = f_nnf_neg.negationnormalform().encode()
-    z3f_pos = z3.parse_smt2_string(''.join([c for c in list(set(f_cons_pos))]) + '(assert ' + f_enc_pos + ')')
-    z3f_neg = z3.parse_smt2_string(''.join([c for c in list(set(f_cons_neg))]) + '(assert ' + f_enc_neg + ')')
+    z3f_pos = string_to_z3expression(''.join([c for c in list(set(f_cons_pos))]) + '(assert ' + f_enc_pos + ')')
+    z3f_neg = string_to_z3expression(''.join([c for c in list(set(f_cons_neg))]) + '(assert ' + f_enc_neg + ')')
 
     pool_size = multiprocessing.cpu_count()
     pool = ThreadPool(pool_size)
@@ -150,10 +150,9 @@ def initialize(formula):
 
     pool.close()
     pool.join()
-
     for m in mutants:
-        m.z3_pos = z3.parse_smt2_string(m.z3string_pos)
-        m.z3_neg = z3.parse_smt2_string(m.z3string_neg)
+        m.z3_pos = string_to_z3expression(m.z3string_pos)
+        m.z3_neg = string_to_z3expression(m.z3string_neg)
 
     # Convert string representations of constants into z3 instances
     constants = list(set(constants + f_cons_pos + f_cons_neg))
@@ -235,10 +234,12 @@ def generate_test(f_pos, f_neg, mutants, tests, aps, coverages):
         return None
 
     # Randomly generate positive or negative test
+    posCase = z3.And(f_pos, m_neg)
+    negCase = z3.And(f_neg, m_pos)
     if random.getrandbits(1):
-        (t, kind) = get_test(z3.And(f_pos, m_neg), z3.And(f_neg, m_pos))  # Positive test if possible
+        (t, kind) = get_test(posCase, negCase)  # Positive test if possible
     else:
-        (t, kind) = get_test(z3.And(f_neg, m_pos), z3.And(f_pos, m_neg))  # Negative test if possible
+        (t, kind) = get_test(negCase, posCase)  # Negative test if possible
         kind = not kind
 
     # If no test was generated proceed with next mutant
