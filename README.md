@@ -59,10 +59,7 @@ Further information can be found in the [documentation](https://github.com/STLIn
 
 ## Contributing
 
-We greatly appreciate fixes and new features for [STLInspector](http://github.com/STLInspector/STLInspector). All contributions to this project should be sent as pull requests on github. [STLInspector](http://github.com/STLInspector/STLInspector) uses *semantic versioning* as described in [packaging.python.org](https://packaging.python.org/distributing/#choosing-a-versioning-scheme).
-Please run test suite
-`python setup.py test`
-before requesting a pull.
+We greatly appreciate fixes and new features for [STLInspector](http://github.com/STLInspector/STLInspector). All contributions to this project should be sent as pull requests on github. More information for developers are available in the [documentation](https://github.com/STLInspector/STLInspector/blob/master/STLInspector/doc/development.md).
 
 ## Licence
 [STLInspector](http://github.com/STLInspector/STLInspector) is released under the [Apache Licence 2.0](https://github.com/STLInspector/STLInspector/blob/master/LICENSE).
