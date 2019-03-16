@@ -1,3 +1,4 @@
+import traceback
 from ..core.parsing import *
 from ..core.testgeneration import *
 from fractions import gcd
@@ -123,7 +124,7 @@ class Project:
             self.visualInspection = dict()
             self.conflict = False
         except Exception as err:
-            print "error: {}".format(err)
+            traceback.print_exc()
             raise Exception('Could not parse stl formula')
 
     # set the textRequirement
