@@ -1,48 +1,51 @@
-# Generated from TemporalLogic.g4 by ANTLR 4.5.2
+# Generated from TemporalLogic.g4 by ANTLR 4.7.2
 # encoding: utf-8
 from __future__ import print_function
 from antlr4 import *
 from io import StringIO
+import sys
+
 
 def serializedATN():
     with StringIO() as buf:
-        buf.write(u"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3")
+        buf.write(u"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3")
         buf.write(u"\31j\4\2\t\2\4\3\t\3\4\4\t\4\3\2\3\2\5\2\13\n\2\3\2\3")
-        buf.write(u"\2\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\5\3\30\n\3\3\3")
-        buf.write(u"\3\3\3\3\3\3\3\3\3\3\3\3\5\3!\n\3\3\3\3\3\3\3\3\3\3\3")
-        buf.write(u"\5\3(\n\3\3\3\3\3\3\3\3\3\3\3\5\3/\n\3\3\3\3\3\3\3\7")
-        buf.write(u"\3\64\n\3\f\3\16\3\67\13\3\3\3\3\3\5\3;\n\3\3\3\3\3\3")
-        buf.write(u"\3\3\3\3\3\3\3\5\3C\n\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3")
-        buf.write(u"\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\5\3U\n\3\3\3\3\3\3")
-        buf.write(u"\3\3\3\3\3\3\3\3\3\3\3\5\3_\n\3\3\3\7\3b\n\3\f\3\16\3")
-        buf.write(u"e\13\3\3\4\3\4\3\4\3\4\2\3\4\5\2\4\6\2\3\3\2\17\20|\2")
-        buf.write(u"\n\3\2\2\2\4B\3\2\2\2\6f\3\2\2\2\b\t\7\22\2\2\t\13\7")
-        buf.write(u"\16\2\2\n\b\3\2\2\2\n\13\3\2\2\2\13\f\3\2\2\2\f\r\7\30")
-        buf.write(u"\2\2\r\3\3\2\2\2\16\17\b\3\1\2\17\20\7\t\2\2\20C\5\4")
-        buf.write(u"\3\f\21\27\7\23\2\2\22\23\7\3\2\2\23\24\7\22\2\2\24\25")
-        buf.write(u"\7\4\2\2\25\26\7\22\2\2\26\30\7\5\2\2\27\22\3\2\2\2\27")
-        buf.write(u"\30\3\2\2\2\30\31\3\2\2\2\31C\5\4\3\b\32 \7\24\2\2\33")
-        buf.write(u"\34\7\3\2\2\34\35\7\22\2\2\35\36\7\4\2\2\36\37\7\22\2")
-        buf.write(u"\2\37!\7\5\2\2 \33\3\2\2\2 !\3\2\2\2!\"\3\2\2\2\"C\5")
-        buf.write(u"\4\3\7#\'\7\25\2\2$%\7\3\2\2%&\7\22\2\2&(\7\5\2\2\'$")
-        buf.write(u"\3\2\2\2\'(\3\2\2\2()\3\2\2\2)C\5\4\3\6*C\7\7\2\2+C\7")
-        buf.write(u"\b\2\2,C\7\30\2\2-/\t\2\2\2.-\3\2\2\2./\3\2\2\2/\60\3")
-        buf.write(u"\2\2\2\60\65\5\2\2\2\61\62\t\2\2\2\62\64\5\2\2\2\63\61")
-        buf.write(u"\3\2\2\2\64\67\3\2\2\2\65\63\3\2\2\2\65\66\3\2\2\2\66")
-        buf.write(u"8\3\2\2\2\67\65\3\2\2\28:\7\6\2\29;\t\2\2\2:9\3\2\2\2")
-        buf.write(u":;\3\2\2\2;<\3\2\2\2<=\7\22\2\2=C\3\2\2\2>?\7\f\2\2?")
-        buf.write(u"@\5\4\3\2@A\7\r\2\2AC\3\2\2\2B\16\3\2\2\2B\21\3\2\2\2")
-        buf.write(u"B\32\3\2\2\2B#\3\2\2\2B*\3\2\2\2B+\3\2\2\2B,\3\2\2\2")
-        buf.write(u"B.\3\2\2\2B>\3\2\2\2Cc\3\2\2\2DE\f\13\2\2EF\7\n\2\2F")
-        buf.write(u"b\5\4\3\fGH\f\n\2\2HI\7\13\2\2Ib\5\4\3\13JK\f\t\2\2K")
-        buf.write(u"L\7\21\2\2Lb\5\4\3\nMN\f\5\2\2NT\7\26\2\2OP\7\3\2\2P")
-        buf.write(u"Q\7\22\2\2QR\7\4\2\2RS\7\22\2\2SU\7\5\2\2TO\3\2\2\2T")
-        buf.write(u"U\3\2\2\2UV\3\2\2\2Vb\5\4\3\6WX\f\4\2\2X^\7\27\2\2YZ")
-        buf.write(u"\7\3\2\2Z[\7\22\2\2[\\\7\4\2\2\\]\7\22\2\2]_\7\5\2\2")
-        buf.write(u"^Y\3\2\2\2^_\3\2\2\2_`\3\2\2\2`b\5\4\3\5aD\3\2\2\2aG")
-        buf.write(u"\3\2\2\2aJ\3\2\2\2aM\3\2\2\2aW\3\2\2\2be\3\2\2\2ca\3")
-        buf.write(u"\2\2\2cd\3\2\2\2d\5\3\2\2\2ec\3\2\2\2fg\5\4\3\2gh\7\2")
-        buf.write(u"\2\3h\7\3\2\2\2\16\n\27 \'.\65:BT^ac")
+        buf.write(u"\2\3\3\3\3\3\3\3\3\3\3\5\3\24\n\3\3\3\3\3\3\3\7\3\31")
+        buf.write(u"\n\3\f\3\16\3\34\13\3\3\3\3\3\5\3 \n\3\3\3\3\3\3\3\3")
+        buf.write(u"\3\3\3\3\3\3\3\3\3\3\3\3\3\5\3,\n\3\3\3\3\3\3\3\3\3\3")
+        buf.write(u"\3\3\3\3\3\5\3\65\n\3\3\3\3\3\3\3\3\3\3\3\5\3<\n\3\3")
+        buf.write(u"\3\3\3\3\3\3\3\3\3\5\3C\n\3\3\3\3\3\3\3\3\3\3\3\3\3\3")
+        buf.write(u"\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\5\3U\n\3\3\3\3")
+        buf.write(u"\3\3\3\3\3\3\3\3\3\3\3\3\3\5\3_\n\3\3\3\7\3b\n\3\f\3")
+        buf.write(u"\16\3e\13\3\3\4\3\4\3\4\3\4\2\3\4\5\2\4\6\2\3\3\2\17")
+        buf.write(u"\20\2|\2\n\3\2\2\2\4B\3\2\2\2\6f\3\2\2\2\b\t\7\22\2\2")
+        buf.write(u"\t\13\7\16\2\2\n\b\3\2\2\2\n\13\3\2\2\2\13\f\3\2\2\2")
+        buf.write(u"\f\r\7\30\2\2\r\3\3\2\2\2\16\17\b\3\1\2\17C\7\7\2\2\20")
+        buf.write(u"C\7\b\2\2\21C\7\30\2\2\22\24\t\2\2\2\23\22\3\2\2\2\23")
+        buf.write(u"\24\3\2\2\2\24\25\3\2\2\2\25\32\5\2\2\2\26\27\t\2\2\2")
+        buf.write(u"\27\31\5\2\2\2\30\26\3\2\2\2\31\34\3\2\2\2\32\30\3\2")
+        buf.write(u"\2\2\32\33\3\2\2\2\33\35\3\2\2\2\34\32\3\2\2\2\35\37")
+        buf.write(u"\7\6\2\2\36 \t\2\2\2\37\36\3\2\2\2\37 \3\2\2\2 !\3\2")
+        buf.write(u"\2\2!\"\7\22\2\2\"C\3\2\2\2#$\7\t\2\2$C\5\4\3\f%+\7\23")
+        buf.write(u"\2\2&\'\7\3\2\2\'(\7\22\2\2()\7\4\2\2)*\7\22\2\2*,\7")
+        buf.write(u"\5\2\2+&\3\2\2\2+,\3\2\2\2,-\3\2\2\2-C\5\4\3\b.\64\7")
+        buf.write(u"\24\2\2/\60\7\3\2\2\60\61\7\22\2\2\61\62\7\4\2\2\62\63")
+        buf.write(u"\7\22\2\2\63\65\7\5\2\2\64/\3\2\2\2\64\65\3\2\2\2\65")
+        buf.write(u"\66\3\2\2\2\66C\5\4\3\7\67;\7\25\2\289\7\3\2\29:\7\22")
+        buf.write(u"\2\2:<\7\5\2\2;8\3\2\2\2;<\3\2\2\2<=\3\2\2\2=C\5\4\3")
+        buf.write(u"\6>?\7\f\2\2?@\5\4\3\2@A\7\r\2\2AC\3\2\2\2B\16\3\2\2")
+        buf.write(u"\2B\20\3\2\2\2B\21\3\2\2\2B\23\3\2\2\2B#\3\2\2\2B%\3")
+        buf.write(u"\2\2\2B.\3\2\2\2B\67\3\2\2\2B>\3\2\2\2Cc\3\2\2\2DE\f")
+        buf.write(u"\13\2\2EF\7\n\2\2Fb\5\4\3\fGH\f\n\2\2HI\7\13\2\2Ib\5")
+        buf.write(u"\4\3\13JK\f\t\2\2KL\7\21\2\2Lb\5\4\3\nMN\f\5\2\2NT\7")
+        buf.write(u"\26\2\2OP\7\3\2\2PQ\7\22\2\2QR\7\4\2\2RS\7\22\2\2SU\7")
+        buf.write(u"\5\2\2TO\3\2\2\2TU\3\2\2\2UV\3\2\2\2Vb\5\4\3\6WX\f\4")
+        buf.write(u"\2\2X^\7\27\2\2YZ\7\3\2\2Z[\7\22\2\2[\\\7\4\2\2\\]\7")
+        buf.write(u"\22\2\2]_\7\5\2\2^Y\3\2\2\2^_\3\2\2\2_`\3\2\2\2`b\5\4")
+        buf.write(u"\3\5aD\3\2\2\2aG\3\2\2\2aJ\3\2\2\2aM\3\2\2\2aW\3\2\2")
+        buf.write(u"\2be\3\2\2\2ca\3\2\2\2cd\3\2\2\2d\5\3\2\2\2ec\3\2\2\2")
+        buf.write(u"fg\5\4\3\2gh\7\2\2\3h\7\3\2\2\2\16\n\23\32\37+\64;BT")
+        buf.write(u"^ac")
         return buf.getvalue()
 
 
@@ -100,11 +103,12 @@ class TemporalLogicParser ( Parser ):
     TOKEN_VARIABLE=22
     TOKEN_WS=23
 
-    def __init__(self, input):
-        super(TemporalLogicParser, self).__init__(input)
-        self.checkVersion("4.5.2")
+    def __init__(self, input, output=sys.stdout):
+        super(TemporalLogicParser, self).__init__(input, output=output)
+        self.checkVersion("4.7.2")
         self._interp = ParserATNSimulator(self, self.atn, self.decisionsToDFA, self.sharedContextCache)
         self._predicates = None
+
 
 
 
@@ -145,6 +149,7 @@ class TemporalLogicParser ( Parser ):
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 8
+            self._errHandler.sync(self)
             _la = self._input.LA(1)
             if _la==TemporalLogicParser.TOKEN_POSNUMBER:
                 self.state = 6
@@ -162,6 +167,7 @@ class TemporalLogicParser ( Parser ):
         finally:
             self.exitRule()
         return localctx
+
 
     class FormulaContext(ParserRuleContext):
 
@@ -553,162 +559,170 @@ class TemporalLogicParser ( Parser ):
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 64
-            self._errHandler.sync(self);
+            self._errHandler.sync(self)
             la_ = self._interp.adaptivePredict(self._input,7,self._ctx)
             if la_ == 1:
-                localctx = TemporalLogicParser.NotCaseContext(self, localctx)
+                localctx = TemporalLogicParser.TrueCaseContext(self, localctx)
                 self._ctx = localctx
                 _prevctx = localctx
 
                 self.state = 13
-                self.match(TemporalLogicParser.TOKEN_NOT)
-                self.state = 14
-                localctx.child = self.formula(10)
-                pass
-
-            elif la_ == 2:
-                localctx = TemporalLogicParser.GloballyCaseContext(self, localctx)
-                self._ctx = localctx
-                _prevctx = localctx
-                self.state = 15
-                self.match(TemporalLogicParser.TOKEN_GLOBALLY)
-                self.state = 21
-                _la = self._input.LA(1)
-                if _la==TemporalLogicParser.T__0:
-                    self.state = 16
-                    self.match(TemporalLogicParser.T__0)
-                    self.state = 17
-                    localctx.leftlimit = self.match(TemporalLogicParser.TOKEN_POSNUMBER)
-                    self.state = 18
-                    self.match(TemporalLogicParser.T__1)
-                    self.state = 19
-                    localctx.rightlimit = self.match(TemporalLogicParser.TOKEN_POSNUMBER)
-                    self.state = 20
-                    self.match(TemporalLogicParser.T__2)
-
-
-                self.state = 23
-                localctx.child = self.formula(6)
-                pass
-
-            elif la_ == 3:
-                localctx = TemporalLogicParser.FinallyCaseContext(self, localctx)
-                self._ctx = localctx
-                _prevctx = localctx
-                self.state = 24
-                self.match(TemporalLogicParser.TOKEN_FINALLY)
-                self.state = 30
-                _la = self._input.LA(1)
-                if _la==TemporalLogicParser.T__0:
-                    self.state = 25
-                    self.match(TemporalLogicParser.T__0)
-                    self.state = 26
-                    localctx.leftlimit = self.match(TemporalLogicParser.TOKEN_POSNUMBER)
-                    self.state = 27
-                    self.match(TemporalLogicParser.T__1)
-                    self.state = 28
-                    localctx.rightlimit = self.match(TemporalLogicParser.TOKEN_POSNUMBER)
-                    self.state = 29
-                    self.match(TemporalLogicParser.T__2)
-
-
-                self.state = 32
-                localctx.child = self.formula(5)
-                pass
-
-            elif la_ == 4:
-                localctx = TemporalLogicParser.NextCaseContext(self, localctx)
-                self._ctx = localctx
-                _prevctx = localctx
-                self.state = 33
-                self.match(TemporalLogicParser.TOKEN_NEXT)
-                self.state = 37
-                _la = self._input.LA(1)
-                if _la==TemporalLogicParser.T__0:
-                    self.state = 34
-                    self.match(TemporalLogicParser.T__0)
-                    self.state = 35
-                    localctx.offset = self.match(TemporalLogicParser.TOKEN_POSNUMBER)
-                    self.state = 36
-                    self.match(TemporalLogicParser.T__2)
-
-
-                self.state = 39
-                localctx.child = self.formula(4)
-                pass
-
-            elif la_ == 5:
-                localctx = TemporalLogicParser.TrueCaseContext(self, localctx)
-                self._ctx = localctx
-                _prevctx = localctx
-                self.state = 40
                 self.match(TemporalLogicParser.TOKEN_TRUE)
                 pass
 
-            elif la_ == 6:
+            elif la_ == 2:
                 localctx = TemporalLogicParser.FalseCaseContext(self, localctx)
                 self._ctx = localctx
                 _prevctx = localctx
-                self.state = 41
+                self.state = 14
                 self.match(TemporalLogicParser.TOKEN_FALSE)
                 pass
 
-            elif la_ == 7:
+            elif la_ == 3:
                 localctx = TemporalLogicParser.BooleanVarCaseContext(self, localctx)
                 self._ctx = localctx
                 _prevctx = localctx
-                self.state = 42
+                self.state = 15
                 self.match(TemporalLogicParser.TOKEN_VARIABLE)
                 pass
 
-            elif la_ == 8:
+            elif la_ == 4:
                 localctx = TemporalLogicParser.APCaseContext(self, localctx)
                 self._ctx = localctx
                 _prevctx = localctx
-                self.state = 44
+                self.state = 17
+                self._errHandler.sync(self)
                 _la = self._input.LA(1)
                 if _la==TemporalLogicParser.TOKEN_ADD or _la==TemporalLogicParser.TOKEN_SUB:
-                    self.state = 43
+                    self.state = 16
                     _la = self._input.LA(1)
                     if not(_la==TemporalLogicParser.TOKEN_ADD or _la==TemporalLogicParser.TOKEN_SUB):
                         self._errHandler.recoverInline(self)
                     else:
+                        self._errHandler.reportMatch(self)
                         self.consume()
 
 
-                self.state = 46
+                self.state = 19
                 self.pos_scaled_variable()
-                self.state = 51
+                self.state = 24
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
                 while _la==TemporalLogicParser.TOKEN_ADD or _la==TemporalLogicParser.TOKEN_SUB:
-                    self.state = 47
+                    self.state = 20
                     _la = self._input.LA(1)
                     if not(_la==TemporalLogicParser.TOKEN_ADD or _la==TemporalLogicParser.TOKEN_SUB):
                         self._errHandler.recoverInline(self)
                     else:
+                        self._errHandler.reportMatch(self)
                         self.consume()
-                    self.state = 48
+                    self.state = 21
                     self.pos_scaled_variable()
-                    self.state = 53
+                    self.state = 26
                     self._errHandler.sync(self)
                     _la = self._input.LA(1)
 
-                self.state = 54
+                self.state = 27
                 self.match(TemporalLogicParser.TOKEN_OPERATOR)
-                self.state = 56
+                self.state = 29
+                self._errHandler.sync(self)
                 _la = self._input.LA(1)
                 if _la==TemporalLogicParser.TOKEN_ADD or _la==TemporalLogicParser.TOKEN_SUB:
-                    self.state = 55
+                    self.state = 28
                     _la = self._input.LA(1)
                     if not(_la==TemporalLogicParser.TOKEN_ADD or _la==TemporalLogicParser.TOKEN_SUB):
                         self._errHandler.recoverInline(self)
                     else:
+                        self._errHandler.reportMatch(self)
                         self.consume()
 
 
-                self.state = 58
+                self.state = 31
                 self.match(TemporalLogicParser.TOKEN_POSNUMBER)
+                pass
+
+            elif la_ == 5:
+                localctx = TemporalLogicParser.NotCaseContext(self, localctx)
+                self._ctx = localctx
+                _prevctx = localctx
+                self.state = 33
+                self.match(TemporalLogicParser.TOKEN_NOT)
+                self.state = 34
+                localctx.child = self.formula(10)
+                pass
+
+            elif la_ == 6:
+                localctx = TemporalLogicParser.GloballyCaseContext(self, localctx)
+                self._ctx = localctx
+                _prevctx = localctx
+                self.state = 35
+                self.match(TemporalLogicParser.TOKEN_GLOBALLY)
+                self.state = 41
+                self._errHandler.sync(self)
+                _la = self._input.LA(1)
+                if _la==TemporalLogicParser.T__0:
+                    self.state = 36
+                    self.match(TemporalLogicParser.T__0)
+                    self.state = 37
+                    localctx.leftlimit = self.match(TemporalLogicParser.TOKEN_POSNUMBER)
+                    self.state = 38
+                    self.match(TemporalLogicParser.T__1)
+                    self.state = 39
+                    localctx.rightlimit = self.match(TemporalLogicParser.TOKEN_POSNUMBER)
+                    self.state = 40
+                    self.match(TemporalLogicParser.T__2)
+
+
+                self.state = 43
+                localctx.child = self.formula(6)
+                pass
+
+            elif la_ == 7:
+                localctx = TemporalLogicParser.FinallyCaseContext(self, localctx)
+                self._ctx = localctx
+                _prevctx = localctx
+                self.state = 44
+                self.match(TemporalLogicParser.TOKEN_FINALLY)
+                self.state = 50
+                self._errHandler.sync(self)
+                _la = self._input.LA(1)
+                if _la==TemporalLogicParser.T__0:
+                    self.state = 45
+                    self.match(TemporalLogicParser.T__0)
+                    self.state = 46
+                    localctx.leftlimit = self.match(TemporalLogicParser.TOKEN_POSNUMBER)
+                    self.state = 47
+                    self.match(TemporalLogicParser.T__1)
+                    self.state = 48
+                    localctx.rightlimit = self.match(TemporalLogicParser.TOKEN_POSNUMBER)
+                    self.state = 49
+                    self.match(TemporalLogicParser.T__2)
+
+
+                self.state = 52
+                localctx.child = self.formula(5)
+                pass
+
+            elif la_ == 8:
+                localctx = TemporalLogicParser.NextCaseContext(self, localctx)
+                self._ctx = localctx
+                _prevctx = localctx
+                self.state = 53
+                self.match(TemporalLogicParser.TOKEN_NEXT)
+                self.state = 57
+                self._errHandler.sync(self)
+                _la = self._input.LA(1)
+                if _la==TemporalLogicParser.T__0:
+                    self.state = 54
+                    self.match(TemporalLogicParser.T__0)
+                    self.state = 55
+                    localctx.offset = self.match(TemporalLogicParser.TOKEN_POSNUMBER)
+                    self.state = 56
+                    self.match(TemporalLogicParser.T__2)
+
+
+                self.state = 59
+                localctx.child = self.formula(4)
                 pass
 
             elif la_ == 9:
@@ -734,7 +748,7 @@ class TemporalLogicParser ( Parser ):
                         self.triggerExitRuleEvent()
                     _prevctx = localctx
                     self.state = 95
-                    self._errHandler.sync(self);
+                    self._errHandler.sync(self)
                     la_ = self._interp.adaptivePredict(self._input,10,self._ctx)
                     if la_ == 1:
                         localctx = TemporalLogicParser.AndCaseContext(self, TemporalLogicParser.FormulaContext(self, _parentctx, _parentState))
@@ -789,6 +803,7 @@ class TemporalLogicParser ( Parser ):
                         self.state = 76
                         self.match(TemporalLogicParser.TOKEN_UNTIL)
                         self.state = 82
+                        self._errHandler.sync(self)
                         _la = self._input.LA(1)
                         if _la==TemporalLogicParser.T__0:
                             self.state = 77
@@ -818,6 +833,7 @@ class TemporalLogicParser ( Parser ):
                         self.state = 86
                         self.match(TemporalLogicParser.TOKEN_RELEASE)
                         self.state = 92
+                        self._errHandler.sync(self)
                         _la = self._input.LA(1)
                         if _la==TemporalLogicParser.T__0:
                             self.state = 87
@@ -848,6 +864,7 @@ class TemporalLogicParser ( Parser ):
         finally:
             self.unrollRecursionContexts(_parentctx)
         return localctx
+
 
     class StartContext(ParserRuleContext):
 
