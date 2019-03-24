@@ -28,5 +28,5 @@ Please be aware that it is required to use the same version of the `antlr4` tool
 ### Steps to change the grammar
 
 1. Edit `STLInspector/core/parseutils/TemporalLogic.g4`
-2. Compile the grammer in the same folder with `antlr4 -Dlanguage=python2 TemporalLogic.g4`. The file `TemporalLogicVisitor.py` contains manual code and should not be overwritten by the compile process.
+2. Compile the grammer in the same folder with `antlr4 -Dlanguage=Python2 TemporalLogic.g4`. The file `TemporalLogicVisitor.py` contains manual code and should not be overwritten by the compile process.
 3. If required, change `TemporalLogicVisitor.py` to parse changed grammar parts so that they are correctly transformed to the temporal logic classes.
