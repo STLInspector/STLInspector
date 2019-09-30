@@ -3,6 +3,9 @@ include LICENSE
 include CHANGELOG.md
 include STLInspector/VERSION
 
+# include all python files
+recursive-include STLInspector *.py
+
 # include example requirement
 include STLInspector/frontend/data/*.stlinspector
 
@@ -16,7 +19,7 @@ include STLInspector/doc/*.md
 include STLInspector/doc/images/*
 
 # include all frontend files
-recursive-include STLInspector/frontend *.py *.js *.css *.html *.png *.svg
+recursive-include STLInspector/frontend *.js *.css *.html *.png *.svg
 
 # patterns to exclude from any directory
 global-exclude *~
