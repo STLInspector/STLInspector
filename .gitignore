@@ -6,4 +6,5 @@ README
 
 # with setuptools generated files
 dist
+build
 *.egg-info
